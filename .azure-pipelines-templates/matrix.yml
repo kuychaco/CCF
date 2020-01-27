@@ -131,7 +131,7 @@ jobs:
           consensus: ${{ consensus }}
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
-          perf_or_release: 'perf'
+          perf_or_release: perf
           # $[ if eq('automated_releases', 'automated_releases') ]:
           #   perf_or_release: 'release'
           # $[ if ne(variables['Build.SourceBranchName'], 'automated_releases') ]:
