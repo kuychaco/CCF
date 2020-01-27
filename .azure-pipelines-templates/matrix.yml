@@ -10,6 +10,9 @@ parameters:
   #   perf_or_release: 'perf'
   # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'automated_releases')]
 
+  # TODO: if branch + tag
+  perf_or_release: 'release'
+
   env:
     NoSGX:
       container: nosgx
@@ -127,17 +130,17 @@ jobs:
     - ${{ each protocol in parameters.protocol }}:
       - template: common.yml
         parameters:
-          ${{ if eq(variables['Build.SourceBranchName'], 'automated_releases') }}:
-            perf_or_release: 'release'
-          ${{ if ne(variables['Build.SourceBranchName'], 'automated_releases') }}:
-            perf_or_release: 'perf'
+          # ${{ if eq(variables['Build.SourceBranchName'], 'automated_releases') }}:
+          #   perf_or_release: 'release'
+          # ${{ if ne(variables['Build.SourceBranchName'], 'automated_releases') }}:
+          #   perf_or_release: 'perf'
           target: SGX
           consensus: ${{ consensus }}
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
           cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
           ctest_filter: '${{ parameters.test.perf[consensus].ctest_args }}'
-          suffix: ${{ perf_or_release }}
+          suffix: ${{ parameters.perf_or_release }}
           depends_on: ${{ parameters.static_check_job_name }}
 
   # - template: cimetrics.yml
