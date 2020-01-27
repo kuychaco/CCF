@@ -88,10 +88,10 @@ parameters:
 # variables
 
 jobs:
-  # - template: checks.yml
-  #   parameters:
-  #     env: ${{ parameters.env[parameters.checks_target] }}
-  #     job_name: ${{ parameters.static_check_job_name }}
+  - template: checks.yml
+    parameters:
+      env: ${{ parameters.env[parameters.checks_target] }}
+      job_name: ${{ parameters.static_check_job_name }}
 
   # # Debug builds with code coverage, run all tests except performance
   # - ${{ each target in parameters.target }}:
