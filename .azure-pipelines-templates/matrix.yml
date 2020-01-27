@@ -11,7 +11,7 @@ parameters:
   # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'automated_releases')]
 
   # TODO: if branch + tag
-  perf_or_release: 'release'
+  perf_or_release: 'perf'
 
   env:
     NoSGX:
