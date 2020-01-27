@@ -30,10 +30,16 @@ parameters:
     CFT:
       cmake_args: ''
     debug:
-      cmake_args: '-DCMAKE_BUILD_TYPE=Debug -DBUILD_SMALLBANK=OFF'
+      cmake_args: '-DCMAKE_BUILD_TYPE=Debug -DBUILD_SMALLBANK=OFF'+
     perf:
+        FTCP:
+          cmake_args: '-DSERVICE_IDENTITY_CURVE_CHOICE=secp256k1_bitcoin'
+        HTTP:
+          cmake_args: ''
+    # TODO: Refactor this with perf
+    release:
       FTCP:
-        cmake_args: '-DSERVICE_IDENTITY_CURVE_CHOICE=secp256k1_bitcoin'
+        cmake_args: ''
       HTTP:
         cmake_args: ''
     san:
@@ -53,6 +59,9 @@ parameters:
         ctest_args: '-L "benchmark|perf"'
       BFT:
         ctest_args: '-L "perf"'
+    release:
+      CFT:
+        ctest_args: '-L "benchmark"' # TODO: Not sure which tests to disable here
     san:
       ctest_args: '-LE "benchmark|perf|suite"'
 
@@ -60,6 +69,13 @@ parameters:
 
   san_target: 'NoSGX'
   checks_target: 'NoSGX'
+
+variables:
+  perf_or_release: $[eq(variables['Build.SourceBranchName'], 'master')]
+
+steps:
+- script: |
+    echo "lala"
 
 jobs:
   - template: checks.yml
@@ -96,6 +112,7 @@ jobs:
         depends_on: ${{ parameters.static_check_job_name }}
 
   # Optimised builds, only run performance tests
+  # When building a release, run all tests and publish install tarball
   - ${{ each consensus in parameters.consensus }}:
     - ${{ each protocol in parameters.protocol }}:
       - template: common.yml
@@ -104,11 +121,11 @@ jobs:
           consensus: ${{ consensus }}
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
-          cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
-          ctest_filter: '${{ parameters.test.perf[consensus].ctest_args }}'
+          cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.release[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
+          ctest_filter: '${{ parameters.test.release[consensus].ctest_args }}'
           suffix: 'Perf'
           depends_on: ${{ parameters.static_check_job_name }}
-  
+
   - template: cimetrics.yml
     parameters:
       env: ${{ parameters.env.CIMetrics }}
