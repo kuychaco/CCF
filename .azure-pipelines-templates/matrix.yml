@@ -125,9 +125,9 @@ jobs:
   # When building a release, run all tests and publish install tarball
   - ${{ each consensus in parameters.consensus }}:
     - ${{ each protocol in parameters.protocol }}:
+      inputs:
+        perf_or_release: perf
       - template: common.yml
-        inputs:
-          perf_or_release: perf
         parameters:
           target: SGX
           consensus: ${{ consensus }}
