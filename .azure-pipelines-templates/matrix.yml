@@ -126,19 +126,20 @@ jobs:
   - ${{ each consensus in parameters.consensus }}:
     - ${{ each protocol in parameters.protocol }}:
       - template: common.yml
+        inputs:
+          perf_or_release: perf
         parameters:
           target: SGX
           consensus: ${{ consensus }}
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
-          perf_or_release: perf
           # $[ if eq('automated_releases', 'automated_releases') ]:
           #   perf_or_release: 'release'
           # $[ if ne(variables['Build.SourceBranchName'], 'automated_releases') ]:
           #   perf_or_release: 'perf'
 
-          cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build[perf][protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
-          ctest_filter: '${{ parameters.test[perf][consensus].ctest_args }}'
+          cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build[perf_or_release][protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
+          ctest_filter: '${{ parameters.test[perf_or_release][consensus].ctest_args }}'
           suffix: Release
           depends_on: ${{ parameters.static_check_job_name }}
 
