@@ -88,10 +88,10 @@ parameters:
 # variables
 
 jobs:
-  - template: checks.yml
-    parameters:
-      env: ${{ parameters.env[parameters.checks_target] }}
-      job_name: ${{ parameters.static_check_job_name }}
+  # - template: checks.yml
+  #   parameters:
+  #     env: ${{ parameters.env[parameters.checks_target] }}
+  #     job_name: ${{ parameters.static_check_job_name }}
 
   # # Debug builds with code coverage, run all tests except performance
   # - ${{ each target in parameters.target }}:
@@ -137,7 +137,7 @@ jobs:
           env: ${{ parameters.env.SGX }}
           cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
           ctest_filter: '${{ parameters.test.perf[consensus].ctest_args }}'
-          suffix: 'Release'
+          suffix: perf_or_release
           depends_on: ${{ parameters.static_check_job_name }}
 
   # - template: cimetrics.yml
