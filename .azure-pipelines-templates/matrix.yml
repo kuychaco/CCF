@@ -71,7 +71,8 @@ parameters:
   checks_target: 'NoSGX'
 
 variables:
-  perf_or_release: $[eq(variables['Build.SourceBranchName'], 'master')]
+  # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'master')]
+  global_variable: "lala"
 
 steps:
 - script: |
