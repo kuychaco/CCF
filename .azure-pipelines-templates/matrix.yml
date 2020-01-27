@@ -140,6 +140,6 @@ jobs:
           suffix: 'Release'
           depends_on: ${{ parameters.static_check_job_name }}
 
-  - template: cimetrics.yml
-    parameters:
-      env: ${{ parameters.env.CIMetrics }}
+  # - template: cimetrics.yml
+  #   parameters:
+  #     env: ${{ parameters.env.CIMetrics }}
