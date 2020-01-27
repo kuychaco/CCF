@@ -11,9 +11,9 @@ parameters:
   # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'automated_releases')]
 
   # TODO: if branch + tag
-  ${{ if eq(variables['Build.SourceBranchName'], 'automated_releases') }}:
+  $[ if eq(variables['Build.SourceBranchName'], 'automated_releases') ]:
     perf_or_release: 'release'
-  ${{ if ne(variables['Build.SourceBranchName'], 'automated_releases') }}:
+  $[ if ne(variables['Build.SourceBranchName'], 'automated_releases') ]:
     perf_or_release: 'perf'
 
   env:
