@@ -70,13 +70,13 @@ parameters:
   san_target: 'NoSGX'
   checks_target: 'NoSGX'
 
+# steps:
+# - script: |
+#     echo "lala"
+
 variables:
   # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'master')]
   global_variable: "lala"
-
-steps:
-- script: |
-    echo "lala"
 
 jobs:
   - template: checks.yml
