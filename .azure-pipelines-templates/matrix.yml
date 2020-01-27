@@ -1,3 +1,7 @@
+variables:
+  # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'master')]
+  global_variable: "lala"
+
 parameters:
   consensus: ['CFT', 'BFT']
   target: ['NoSGX', 'SGX']
@@ -74,9 +78,9 @@ parameters:
 # - script: |
 #     echo "lala"
 
-variables:
-  # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'master')]
-  global_variable: "lala"
+# variables:
+#   # perf_or_release: $[eq(variables['Build.SourceBranchName'], 'master')]
+#   global_variable: "lala"
 
 jobs:
   - template: checks.yml
