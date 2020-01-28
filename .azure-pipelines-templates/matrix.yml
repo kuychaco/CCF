@@ -32,19 +32,19 @@ parameters:
 
     debug:
       cmake_args: '-DCMAKE_BUILD_TYPE=Debug -DBUILD_SMALLBANK=OFF'
-    Perf:
+    perf:
       FTCP:
         cmake_args: '-DSERVICE_IDENTITY_CURVE_CHOICE=secp256k1_bitcoin'
       HTTP:
         cmake_args: ''
-    Release:
+    release:
       FTCP:
         cmake_args: ''
       HTTP:
         cmake_args: ''
-    Release:
+    release:
       cmake_args: '-DCMAKE_INSTALL_PREFIX=.' # TODO: Is this the best place?
-    Perf:
+    perf:
       cmake_args: ''
     san:
       cmake_args: '-DSAN=ON'
@@ -58,12 +58,12 @@ parameters:
       ctest_args: '-LE "benchmark|perf|suite"'
     SGX:
       ctest_args: '-LE "benchmark|perf"'
-    Perf:
+    perf:
       CFT:
         ctest_args: '-L "benchmark|perf"'
       BFT:
         ctest_args: '-L "perf"'
-    Release:
+    release:
       CFT:
         ctest_args: '-L "benchmark"' # TODO: Not sure which tests to disable here
       BFT:
