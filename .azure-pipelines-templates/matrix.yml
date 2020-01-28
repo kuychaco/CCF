@@ -134,8 +134,8 @@ jobs:
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
           # $[ if eq('automated_releases', 'automated_releases') ]:
-          cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build[$[variables.perf_or_release]][protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
-          ctest_filter: '${{ parameters.test[$[variables.perf_or_release]][consensus].ctest_args }}'
+          cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build[perf][protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
+          ctest_filter: '${{ parameters.test[perf][consensus].ctest_args }}'
           # $[ if ne(variables['Build.SourceBranchName'], 'automated_releases') ]:
           #   cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
             # ctest_filter: '${{ parameters.test.perf[consensus].ctest_args }}'
