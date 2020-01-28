@@ -61,9 +61,9 @@ parameters:
         ctest_args: '-L "perf"'
     release:
       CFT:
-        ctest_args: '-L "benchmark"' # TODO: Not sure which tests to disable here
+        ctest_args: '-L "benchmark|perf"' # TODO: Not sure which tests to disable here
       BFT:
-        ctest_args: '-L "perf"'
+        ctest_args: '-L "perf"' # TODO: No Release for BFT?
     san:
       ctest_args: '-LE "benchmark|perf|suite"'
 
