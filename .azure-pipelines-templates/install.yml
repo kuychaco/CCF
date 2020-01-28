@@ -1,0 +1,6 @@
+steps:
+- script: |
+    ninja install
+  displayName: Install CCF locally
+
+  # TODO: Zip it and add it to build artefacts

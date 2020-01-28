@@ -55,9 +55,9 @@ resources:
 # TODO: Should be master and tagged
 variables:
   ${{ if eq('automated_releases', 'automated_releases') }}:
-    perf_or_release: release
+    perf_or_release: Release
   ${{ if ne('automated_releases', 'automated_releases') }}:
-    perf_or_release: perf
+    perf_or_release: Perf
 
 jobs:
 - template: .azure-pipelines-templates/matrix.yml
