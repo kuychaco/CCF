@@ -1,7 +1,8 @@
 parameters:
   consensus: ['CFT', 'BFT']
   target: ['NoSGX', 'SGX']
-  protocol: ['FTCP', 'HTTP']
+  # protocol: ['FTCP', 'HTTP']
+  protocol: ['FTCP'] # TODO: Fix
 
   env:
     NoSGX:
@@ -122,6 +123,6 @@ jobs:
           suffix: ${{ parameters.perf_or_release }}
           # depends_on: ${{ parameters.static_check_job_name }}
 
-  # - template: cimetrics.yml
-  #   parameters:
-  #     env: ${{ parameters.env.CIMetrics }}
+  - template: cimetrics.yml
+    parameters:
+      env: ${{ parameters.env.CIMetrics }}

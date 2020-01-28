@@ -1,5 +1,5 @@
 jobs:
-- job: CIMetrics
+- job: CIMetrics # TODO: Rename this to push
   variables:
     skipComponentGovernanceDetection: true
   displayName: 'CI Metrics'
@@ -30,5 +30,12 @@ jobs:
         artifactName: cimetrics
       displayName: 'Publish cimetrics graphs as build artifact'
       condition: eq(variables['Build.Reason'], 'PullRequest')
+
+    - download: current
+      artifact: ccf_install.tar.gz
+
+
+
+
 
     # TODO: Add steps for github release

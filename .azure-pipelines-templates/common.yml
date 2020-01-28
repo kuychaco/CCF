@@ -28,7 +28,8 @@ jobs:
     #       consensus: ${{ parameters.consensus }}
     - ${{ if and(eq(parameters.suffix, 'release'), eq(parameters.consensus, 'CFT'))}}:
       - template: install.yml
-        # parameters:
+        parameters:
+          protocol: parameters.protocol
 
 
 
