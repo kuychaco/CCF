@@ -37,7 +37,7 @@ jobs:
 
     - task: GitHubRelease@0
       inputs:
-        gitHubConnection: $(GITHUB_TOKEN) # TODO: Should be me instead of cimetrics?
+        gitHubConnection: ccf_release_jumaffre # TODO: Should be me instead of cimetrics?
         repositoryName: '$(Build.Repository.Name)'
         action: 'create' # Options: create, edit, delete
         target: '$(Build.SourceVersion)' # Required when action == Create || Action == Edit
