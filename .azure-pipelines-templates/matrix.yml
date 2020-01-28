@@ -135,7 +135,6 @@ jobs:
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
           perf_or_release: ${{ parameters.perf_or_release }}
-          perf: perf
           cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
           ctest_filter: '${{ parameters.test.perf[consensus].ctest_args }}'
           suffix: ${{ parameters.perf_or_release }}
