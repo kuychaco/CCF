@@ -42,7 +42,7 @@ jobs:
         action: 'create'
         target: '$(Build.SourceVersion)'
         tagSource: manual
-        # tagPattern:
+        tag: 'test'
         assets: $(Build.ArtifactStagingDirectory)/*.tar.gz
         assetUploadMode: true
         isDraft: true
