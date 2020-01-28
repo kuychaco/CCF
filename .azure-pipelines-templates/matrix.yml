@@ -43,7 +43,6 @@ parameters:
         cmake_args: '-DSERVICE_IDENTITY_CURVE_CHOICE=secp256k1_bitcoin'
       HTTP:
         cmake_args: ''
-    # TODO: Refactor this with perf
     release:
       FTCP:
         cmake_args: ''
@@ -69,6 +68,8 @@ parameters:
     release:
       CFT:
         ctest_args: '-L "benchmark"' # TODO: Not sure which tests to disable here
+      BFT:
+        ctest_args: '-L "perf"'
     san:
       ctest_args: '-LE "benchmark|perf|suite"'
 
@@ -133,7 +134,7 @@ jobs:
           consensus: ${{ consensus }}
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
-          perf_or_release: ${{ parameters.perf_or_release }}
+          # perf_or_release: ${{ parameters.perf_or_release }}
           perf: perf
           cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf_or_release[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
           ctest_filter: '${{ parameters.test.perf_or_release[consensus].ctest_args }}'
