@@ -44,7 +44,7 @@ jobs:
         tagSource: manual
         tag: 'test'
         assets: $(Build.ArtifactStagingDirectory)/*.tar.gz
-        assetUploadMode: true
+        assetUploadMode: 'delete'
         isDraft: true
         isPreRelease: true
       displayName: 'GitHub release (create)'
