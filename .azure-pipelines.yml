@@ -54,9 +54,9 @@ resources:
 
 # TODO: Should be master and tagged
 variables:
-  ${{ if eq('automated_releases', 'automated_releases') }}:
+  ${{ if eq('automated_releases', 'automated_releases2') }}:
     perf_or_release: release
-  ${{ if ne('automated_releases', 'automated_releases') }}:
+  ${{ if ne('automated_releases', 'automated_releases2') }}:
     perf_or_release: perf
 
 jobs:
