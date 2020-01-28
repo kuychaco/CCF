@@ -53,9 +53,9 @@ resources:
       options: --publish-all --device /dev/sgx:/dev/sgx -v /dev/shm:/ccache
 
 variables:
-  $[ if eq('automated_releases', 'automated_releases') ]:
+  ${{ if eq('automated_releases', 'automated_releases') }}:
     perf_or_release: release
-  $[ if ne('automated_releases', 'automated_releases') ]:
+  ${{ if ne('automated_releases', 'automated_releases') }}:
     perf_or_release: perf
 
 jobs:
