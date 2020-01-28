@@ -31,11 +31,18 @@ jobs:
       displayName: 'Publish cimetrics graphs as build artifact'
       condition: eq(variables['Build.Reason'], 'PullRequest')
 
+    # TODO: Only run for release builds
     - download: current
       artifact: ccf_install.tar.gz
 
-
-
-
-
-    # TODO: Add steps for github release
+    - task: GitHubRelease@0
+      inputs:
+        gitHubConnection: $(GITHUB_TOKEN) # TODO: Should be me instead of cimetrics?
+        repositoryName: '$(Build.Repository.Name)'
+        action: 'create' # Options: create, edit, delete
+        target: '$(Build.SourceVersion)' # Required when action == Create || Action == Edit
+        assets: $(Build.ArtifactStagingDirectory)/*.tar.gz
+        assetUploadMode: true
+        isDraft: true
+        isPreRelease: true
+      displayName: 'GitHub release (create)'
