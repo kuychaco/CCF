@@ -77,6 +77,8 @@ parameters:
   san_target: 'NoSGX'
   checks_target: 'NoSGX'
 
+
+
 # steps:
 # - script: |
 #     echo "lala"
@@ -131,12 +133,12 @@ jobs:
           consensus: ${{ consensus }}
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
-          $[ if eq('automated_releases', 'automated_releases') ]:
-            cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.release[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
-            ctest_filter: '${{ parameters.test.release[consensus].ctest_args }}'
-          $[ if ne(variables['Build.SourceBranchName'], 'automated_releases') ]:
-            cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
-            ctest_filter: '${{ parameters.test.perf[consensus].ctest_args }}'
+          # $[ if eq('automated_releases', 'automated_releases') ]:
+          cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build[variables.perf_or_release][protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
+          ctest_filter: '${{ parameters.test[variables.perf_or_release][consensus].ctest_args }}'
+          # $[ if ne(variables['Build.SourceBranchName'], 'automated_releases') ]:
+          #   cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build.perf[protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
+            # ctest_filter: '${{ parameters.test.perf[consensus].ctest_args }}'
           suffix: Release
           depends_on: ${{ parameters.static_check_job_name }}
 
