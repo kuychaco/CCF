@@ -3,7 +3,7 @@ jobs:
   variables:
     skipComponentGovernanceDetection: true
   displayName: 'CI Metrics'
-  
+
   ${{ insert }}: ${{ parameters.env }}
 
   steps:
@@ -30,3 +30,5 @@ jobs:
         artifactName: cimetrics
       displayName: 'Publish cimetrics graphs as build artifact'
       condition: eq(variables['Build.Reason'], 'PullRequest')
+
+    # TODO: Add steps for github release
