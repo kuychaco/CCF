@@ -52,6 +52,7 @@ resources:
       image: ccfciteam/ccf-ci-18.04-oe-0.8.0-rc1:latest
       options: --publish-all --device /dev/sgx:/dev/sgx -v /dev/shm:/ccache
 
+# TODO: Should be master and tagged
 variables:
   ${{ if eq('automated_releases', 'automated_releases2') }}:
     perf_or_release: release
