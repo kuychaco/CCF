@@ -1,8 +1,8 @@
 parameters:
-  consensus: ['CFT', 'BFT']
+  # consensus: ['CFT', 'BFT']
+  consensus: ['CFT'] # TODO: Fix
   target: ['NoSGX', 'SGX']
-  # protocol: ['FTCP', 'HTTP']
-  protocol: ['FTCP'] # TODO: Fix
+  protocol: ['FTCP', 'HTTP']
 
   # release:
 

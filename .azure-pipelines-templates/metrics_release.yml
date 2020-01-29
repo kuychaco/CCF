@@ -44,8 +44,8 @@ jobs:
           repositoryName: '$(Build.Repository.Name)'
           action: 'create'
           target: '$(Build.SourceVersion)'
-          tagSource: manual
-          tag: 'test'
+          tagSource: manual # TODO: Change this
+          tag: 'test' # TODO: Change this
           assets: $(Build.ArtifactStagingDirectory)/*.tar.gz
           assetUploadMode: 'delete'
           isDraft: true
