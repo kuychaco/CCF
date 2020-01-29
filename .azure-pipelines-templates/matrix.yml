@@ -4,6 +4,8 @@ parameters:
   # protocol: ['FTCP', 'HTTP']
   protocol: ['FTCP'] # TODO: Fix
 
+  release: ${{ eq(parameters.perf_or_release, 'release') }}
+
   env:
     NoSGX:
       container: nosgx
@@ -119,7 +121,7 @@ jobs:
           consensus: ${{ consensus }}
           protocol: ${{ protocol }}
           env: ${{ parameters.env.SGX }}
-          perf_or_release: ${{ parameters.perf_or_release }}
+          release: ${{ parameters.release }}
           cmake_args: '${{ parameters.build.common.cmake_args }} ${{ parameters.build[parameters.perf_or_release][protocol].cmake_args }} ${{ parameters.build.SGX.cmake_args }} ${{ parameters.build[consensus].cmake_args }} ${{ parameters.build[protocol].cmake_args }}'
           ctest_filter: '${{ parameters.test[parameters.perf_or_release][consensus].ctest_args }}'
           suffix: ${{ parameters.perf_or_release }}
@@ -128,3 +130,4 @@ jobs:
   - template: metrics_release.yml
     parameters:
       env: ${{ parameters.env.MetricsAndRelease }}
+      release: ${{ parameters.perf_or_release }}

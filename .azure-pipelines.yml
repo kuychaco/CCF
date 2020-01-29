@@ -54,12 +54,12 @@ resources:
 
 # TODO: Should be master and tagged
 variables:
-  ${{ if eq('automated_releases', 'automated_releases') }}:
+  ${{ if startsWith(variables['Build.SourceBranchName'], 'automated_releases') }}:
     perf_or_release: release
-  ${{ if ne('automated_releases', 'automated_releases') }}:
+  ${{ if not(startsWith(variables['Build.SourceBranchName'], 'automated_releases')) }}:
     perf_or_release: perf
 
 jobs:
 - template: .azure-pipelines-templates/matrix.yml
   parameters:
-    perf_or_release: ${{ variables['perf_or_release'] }}
+    release: ${{ variables['perf_or_release'] }}
