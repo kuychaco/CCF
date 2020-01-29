@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cryptography &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Performance" href="performance.html" />
+    <link rel="prev" title="Ledger" href="ledger.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Writing CCF Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html">Build and Sign Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">End-to-end demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/index.html">Key-Value Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html">Ledger</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Cryptography</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#keys">Keys</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#network">Network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#node">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#user">User</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#member">Member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ephemeral-network-keys">Ephemeral Network Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms-and-curves">Algorithms and Curves</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">Developer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Writing CCF Applications</a> &raquo;</li>
+        
+      <li>Cryptography</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/developers/cryptography.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cryptography">
+<h1>Cryptography<a class="headerlink" href="#cryptography" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="keys">
+<h2>Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="network">
+<h3>Network<a class="headerlink" href="#network" title="Permalink to this headline">¶</a></h3>
+<p>A CCF network has a master secret, which is used to derive keys for multiple purposes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A network identity public-key certificate, used for <a class="reference internal" href="../glossary.html#term-tls"><span class="xref std std-term">TLS</span></a> server authentication.</p></li>
+<li><p>Symmetric data-encryption keys, used to encrypt entries in the ledger.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="node">
+<h3>Node<a class="headerlink" href="#node" title="Permalink to this headline">¶</a></h3>
+<p>Each CCF node is identified by a fresh public-key certificate endorsed by a quote.
+This certificate is used to authenticate the node when it joins the
+network, and to sign entries committed by the node to the ledger during its time as primary.</p>
+<p>Node keys are also used during recovery, to share recovered network secrets between nodes.</p>
+</div>
+<div class="section" id="user">
+<h3>User<a class="headerlink" href="#user" title="Permalink to this headline">¶</a></h3>
+<p>Each CCF user is identified by a public-key certificate, used for <a class="reference internal" href="../glossary.html#term-tls"><span class="xref std std-term">TLS</span></a> client authentication when they connect to the service.
+These keys are also used to sign user commands.</p>
+</div>
+<div class="section" id="member">
+<h3>Member<a class="headerlink" href="#member" title="Permalink to this headline">¶</a></h3>
+<p>Each CCF consortium member is similarly identified by a public-key certificate used for client authentication and command signing.</p>
+</div>
+<div class="section" id="ephemeral-network-keys">
+<h3>Ephemeral Network Keys<a class="headerlink" href="#ephemeral-network-keys" title="Permalink to this headline">¶</a></h3>
+<p>Each node to node pair establishes a symmetric traffic key, using an authenticated Diffie Hellman key exchange.
+This key authenticates ledger replication headers exchanged between  nodes. It is also use to encrypt forwarded
+write transactions from the backups to the primary.</p>
+</div>
+</div>
+<div class="section" id="algorithms-and-curves">
+<h2>Algorithms and Curves<a class="headerlink" href="#algorithms-and-curves" title="Permalink to this headline">¶</a></h2>
+<p>Authenticated encryption in CCF relies on AES256-GCM. Ledger authentication relies on Merkle trees using SHA2-256. These algorithms are provided by <a class="reference external" href="https://project-everest.github.io/">project Everest</a>.</p>
+<p>Public-key certificates, signatures, and ephemeral Diffie-Hellman key exchanges all rely on
+elliptic curves. They can be configured to use one of the following implementations:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ed25519 from <a class="reference external" href="https://project-everest.github.io/">project Everest</a>.</p></li>
+<li><p>secp384r1 from <a class="reference external" href="https://tls.mbed.org/">mbedTLS</a>.</p></li>
+<li><p>secp256k1 from <a class="reference external" href="https://github.com/bitcoin-core/secp256k1">bitcoin core</a>.</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="performance.html" class="btn btn-neutral float-right" title="Performance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ledger.html" class="btn btn-neutral float-left" title="Ledger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

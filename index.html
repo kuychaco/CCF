@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CCF documentation &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>CCF documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ccf-documentation">
+<h1>CCF documentation<a class="headerlink" href="#ccf-documentation" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/ccf.svg" src="_images/ccf.svg" /></div>
+<div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>First, you should <a class="reference internal" href="quickstart/requirements.html#environment-setup"><span class="std std-ref">setup a CCF-compatible environment</span></a>. Then, you will be able to <a class="reference internal" href="quickstart/build.html#building-ccf"><span class="std std-ref">build CCF from source and run CCF test suite</span></a>. Note that for rapid prototyping, you can run a <cite>virtual</cite> build of CCF that does not require Intel SGX.</p>
+<p>Once this is done, you can quickly spin up a CCF network and start <a class="reference internal" href="users/issue_commands.html#issuing-commands"><span class="std std-ref">issuing commands to the deployed application</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> CCF/build
+$ ../start_test_network.sh ./liblogging.enclave.so.signed
+Setting up Python environment...
+Python environment successfully setup
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:47:41.562<span class="o">]</span> Starting <span class="m">3</span> CCF nodes...
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> Started CCF network with the following nodes:
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span>   Node <span class="o">[</span> <span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="m">127</span>.177.10.108:37765
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span>   Node <span class="o">[</span> <span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="m">127</span>.169.74.37:58343
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span>   Node <span class="o">[</span> <span class="m">2</span><span class="o">]</span> <span class="o">=</span> <span class="m">127</span>.131.108.179:50532
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> You can now issue business transactions to the ./liblogging.enclave.so.signed application.
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> See https://microsoft.github.io/CCF/users/issue_commands.html <span class="k">for</span> more information.
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> Press Ctrl+C to shutdown the network.
+</pre></div>
+</div>
+<p>You should also get familiar with some of <a class="reference internal" href="concepts.html#ccf-concepts"><span class="std std-ref">CCF Concepts</span></a>. You will then be able to:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="members/index.html#member-governance"><span class="std std-ref">Create a consortium and agree on the constitution</span></a></p></li>
+<li><p><a class="reference internal" href="developers/example.html#example-application"><span class="std std-ref">Develop a CCF application, based on the example logging application</span></a></p></li>
+<li><p><a class="reference internal" href="operators/start_network.html#starting-a-new-network"><span class="std std-ref">Start a new CCF network to deploy the application</span></a></p></li>
+<li><p><a class="reference internal" href="members/open_network.html#opening-a-network"><span class="std std-ref">Let the consortium configure and open the network to users</span></a></p></li>
+<li><p><a class="reference internal" href="users/index.html#using-ccf-applications"><span class="std std-ref">Have users issue business transactions to the application</span></a></p></li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design/index.html">Design</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="introduction.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

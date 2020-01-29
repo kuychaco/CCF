@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Performance &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer API" href="api.html" />
+    <link rel="prev" title="Cryptography" href="cryptography.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Writing CCF Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html">Build and Sign Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">End-to-end demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/index.html">Key-Value Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html">Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Cryptography</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Performance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#micro-benchmarks">Micro-benchmarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#end-to-end-performance-tests">End-to-end performance tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">Developer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Writing CCF Applications</a> &raquo;</li>
+        
+      <li>Performance</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/developers/performance.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="performance">
+<h1>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>CCF pairs strong confidentiality guarantees with <a class="reference external" href="https://github.com/microsoft/CCF/blob/master/CCF-TECHNICAL-REPORT.pdf">very high performance</a>. CCF can sustain high transaction throughput, while also reaching consensus over global commits with low latency.</p>
+<p>There are several performance metrics in the CI test suite to ensure this, ranging from micro-benchmarks of critical systems to end-to-end tests measuring peak throughput. These are run against every PR and commit to the master branch. You can also run these locally to test the configuration of your machines, and use them as a basis for creating performance tests of your own CCF application.</p>
+</div>
+<div class="section" id="micro-benchmarks">
+<h2>Micro-benchmarks<a class="headerlink" href="#micro-benchmarks" title="Permalink to this headline">¶</a></h2>
+<p>The micro-benchmark tests can be run from the CCF build directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./tests.sh -VV -L <span class="s2">&quot;bench&quot;</span>
+</pre></div>
+</div>
+<p>These test performance-critical features of CCF such as certificate verification and KV-alterations. As an example, here is sample output of <code class="docutils literal notranslate"><span class="pre">tls_bench</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sign:
+<span class="o">===============================================================================</span>
+   Name <span class="o">(</span>baseline is *<span class="o">)</span>   <span class="p">|</span>   Dim   <span class="p">|</span>  Total ms <span class="p">|</span>  ns/op  <span class="p">|</span>Baseline<span class="p">|</span> Ops/second
+<span class="o">===============================================================================</span>
+           sign_384_1byte <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">1</span>.527 <span class="p">|</span> <span class="m">1527100</span> <span class="p">|</span> <span class="m">40</span>.081 <span class="p">|</span>      <span class="m">654</span>.8
+    sign_256k1_mbed_1byte <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.893 <span class="p">|</span>  <span class="m">893300</span> <span class="p">|</span> <span class="m">23</span>.446 <span class="p">|</span>     <span class="m">1119</span>.4
+  sign_256k1_bitc_1byte * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.038 <span class="p">|</span>   <span class="m">38100</span> <span class="p">|</span>      - <span class="p">|</span>    <span class="m">26246</span>.7
+              sign_384_1k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">1</span>.557 <span class="p">|</span> <span class="m">1557100</span> <span class="p">|</span> <span class="m">40</span>.869 <span class="p">|</span>      <span class="m">642</span>.2
+       sign_256k1_mbed_1k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.922 <span class="p">|</span>  <span class="m">922200</span> <span class="p">|</span> <span class="m">24</span>.205 <span class="p">|</span>     <span class="m">1084</span>.4
+     sign_256k1_bitc_1k * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.041 <span class="p">|</span>   <span class="m">41100</span> <span class="p">|</span>  <span class="m">1</span>.079 <span class="p">|</span>    <span class="m">24330</span>.9
+            sign_384_100k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">1</span>.782 <span class="p">|</span> <span class="m">1782100</span> <span class="p">|</span> <span class="m">46</span>.774 <span class="p">|</span>      <span class="m">561</span>.1
+     sign_256k1_mbed_100k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">1</span>.268 <span class="p">|</span> <span class="m">1267700</span> <span class="p">|</span> <span class="m">33</span>.273 <span class="p">|</span>      <span class="m">788</span>.8
+   sign_256k1_bitc_100k * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.377 <span class="p">|</span>  <span class="m">377300</span> <span class="p">|</span>  <span class="m">9</span>.903 <span class="p">|</span>     <span class="m">2650</span>.4
+<span class="o">===============================================================================</span>
+verify:
+<span class="o">===============================================================================</span>
+   Name <span class="o">(</span>baseline is *<span class="o">)</span>   <span class="p">|</span>   Dim   <span class="p">|</span>  Total ms <span class="p">|</span>  ns/op  <span class="p">|</span>Baseline<span class="p">|</span> Ops/second
+<span class="o">===============================================================================</span>
+         verify_384_1byte <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">2</span>.917 <span class="p">|</span> <span class="m">2917301</span> <span class="p">|</span> <span class="m">51</span>.542 <span class="p">|</span>      <span class="m">342</span>.8
+  verify_256k1_mbed_1byte <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">1</span>.714 <span class="p">|</span> <span class="m">1714500</span> <span class="p">|</span> <span class="m">30</span>.292 <span class="p">|</span>      <span class="m">583</span>.3
+verify_256k1_bitc_1byte * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.057 <span class="p">|</span>   <span class="m">56600</span> <span class="p">|</span>      - <span class="p">|</span>    <span class="m">17667</span>.8
+            verify_384_1k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">2</span>.966 <span class="p">|</span> <span class="m">2966300</span> <span class="p">|</span> <span class="m">52</span>.408 <span class="p">|</span>      <span class="m">337</span>.1
+     verify_256k1_mbed_1k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">1</span>.722 <span class="p">|</span> <span class="m">1721700</span> <span class="p">|</span> <span class="m">30</span>.419 <span class="p">|</span>      <span class="m">580</span>.8
+   verify_256k1_bitc_1k * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.060 <span class="p">|</span>   <span class="m">59600</span> <span class="p">|</span>  <span class="m">1</span>.053 <span class="p">|</span>    <span class="m">16778</span>.5
+          verify_384_100k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">3</span>.162 <span class="p">|</span> <span class="m">3161701</span> <span class="p">|</span> <span class="m">55</span>.860 <span class="p">|</span>      <span class="m">316</span>.3
+   verify_256k1_mbed_100k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">2</span>.111 <span class="p">|</span> <span class="m">2110901</span> <span class="p">|</span> <span class="m">37</span>.295 <span class="p">|</span>      <span class="m">473</span>.7
+ verify_256k1_bitc_100k * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.398 <span class="p">|</span>  <span class="m">398000</span> <span class="p">|</span>  <span class="m">7</span>.032 <span class="p">|</span>     <span class="m">2512</span>.6
+<span class="o">===============================================================================</span>
+hash:
+<span class="o">===============================================================================</span>
+   Name <span class="o">(</span>baseline is *<span class="o">)</span>   <span class="p">|</span>   Dim   <span class="p">|</span>  Total ms <span class="p">|</span>  ns/op  <span class="p">|</span>Baseline<span class="p">|</span> Ops/second
+<span class="o">===============================================================================</span>
+           hash_384_1byte <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.001 <span class="p">|</span>     <span class="m">600</span> <span class="p">|</span>  <span class="m">0</span>.750 <span class="p">|</span>  <span class="m">1666666</span>.7
+    hash_256k1_mbed_1byte <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.001 <span class="p">|</span>     <span class="m">600</span> <span class="p">|</span>  <span class="m">0</span>.750 <span class="p">|</span>  <span class="m">1666666</span>.7
+  hash_256k1_bitc_1byte * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.001 <span class="p">|</span>     <span class="m">800</span> <span class="p">|</span>      - <span class="p">|</span>  <span class="m">1250000</span>.0
+              hash_384_1k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.003 <span class="p">|</span>    <span class="m">3100</span> <span class="p">|</span>  <span class="m">3</span>.875 <span class="p">|</span>   <span class="m">322580</span>.6
+       hash_256k1_mbed_1k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.004 <span class="p">|</span>    <span class="m">4200</span> <span class="p">|</span>  <span class="m">5</span>.250 <span class="p">|</span>   <span class="m">238095</span>.2
+     hash_256k1_bitc_1k * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.004 <span class="p">|</span>    <span class="m">4500</span> <span class="p">|</span>  <span class="m">5</span>.625 <span class="p">|</span>   <span class="m">222222</span>.2
+            hash_384_100k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.223 <span class="p">|</span>  <span class="m">223000</span> <span class="p">|</span><span class="m">278</span>.750 <span class="p">|</span>     <span class="m">4484</span>.3
+     hash_256k1_mbed_100k <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.340 <span class="p">|</span>  <span class="m">340100</span> <span class="p">|</span><span class="m">425</span>.125 <span class="p">|</span>     <span class="m">2940</span>.3
+   hash_256k1_bitc_100k * <span class="p">|</span>       <span class="m">1</span> <span class="p">|</span>     <span class="m">0</span>.340 <span class="p">|</span>  <span class="m">340400</span> <span class="p">|</span><span class="m">425</span>.500 <span class="p">|</span>     <span class="m">2937</span>.7
+<span class="o">===============================================================================</span>
+</pre></div>
+</div>
+<p>This compares the signing, verification, and hashing performance of different cryptographic curve implementations in CCF. The <a class="reference external" href="https://github.com/bitcoin-core/secp256k1">bitcoin-core implementation</a> of elliptic curve secp256k1 is significantly faster than other supported curves, particularly when verification becomes a bottleneck.</p>
+</div>
+<div class="section" id="end-to-end-performance-tests">
+<h2>End-to-end performance tests<a class="headerlink" href="#end-to-end-performance-tests" title="Permalink to this headline">¶</a></h2>
+<p>The end-to-end service performance tests can also be from the CCF build directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./tests.sh -VV -L <span class="s2">&quot;perf&quot;</span>
+</pre></div>
+</div>
+<p>Each of these tests creates a temporary CCF service on the local machine, then sends a high volume of transactions to measure peak and average throughput. The python test wrappers will print summary statistics including a transaction rate histogram when the test completes. These statistics can be retrieved from any CCF service via the <code class="docutils literal notranslate"><span class="pre">getMetrics</span></code> RPC.</p>
+<p>For a finer grained view of performance the clients in these tests can also dump the precise times each transaction was sent and its response received, for later analysis. The <code class="docutils literal notranslate"><span class="pre">samples</span></code> folder contains a <code class="docutils literal notranslate"><span class="pre">plot_tx_times</span></code> Python script which produces plots from this data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> build
+python ../samples/perf_client/plot_tx_times.py --save-to perf_plot.png single client_0_test_sent.csv client_0_test_recv.csv
+</pre></div>
+</div>
+<p>The following plot was produced by this script, showing 1,000 transactions sent to the <a class="reference external" href="https://github.com/microsoft/CCF/tree/master/samples/apps/smallbank">SmallBank</a> sample application:</p>
+<img alt="../_images/1k_unsigned.png" src="../_images/1k_unsigned.png" />
+<p>This displays several things:</p>
+<blockquote>
+<div><ul>
+<li><p>The latency of each request (on the left y-axis), ie the delay between a request being sent and the corresponding response received, distinguishing</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the business transactions sent to SmallBank application (green dots)</p></li>
+<li><p>the generic <code class="docutils literal notranslate"><span class="pre">getCommit</span></code> requests used to poll for global commit synchronisation (red dots)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The progress of the CCF commit version (on the right axis), showing both</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the receiving node’s locally committed version (blue line)</p></li>
+<li><p>the highest version agreed by the global consensus across the service (orange line)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>This shows a healthy service. Response latencies are stable, the local version increases steadily, and the global commit correctly catches up shortly afterwards. Note that the node’s local version increments with each processed write transaction but the global commit only changes after longer intervals, increasing in larger steps. The additional delay is from the roundtrip communications required by the consensus protocol, while the step-size is due to the consensus working over <cite>batches</cite> of transactions rather than executing for each transaction individually - in this case the service has batched the first 500 transactions, incrementing the global version to 500.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is an idealised test; the client is sending one transaction at a time to measure minimum latency, the transaction logic is simple, the client is communicating with a local node. This is used to establish an <cite>upper limit</cite> on possible performance.</p>
+</div>
+<p>This can give a direct A/B comparison of various changes. For example, if each request is signed from the client:</p>
+<img alt="../_images/1k_signed.png" src="../_images/1k_signed.png" />
+<p>Since CCF verifies the signature on every transaction, the per-request time has increased by approximately 3X (verification is very expensive relative to the simple business logic in SmallBank). These signatures are over the secp256k1 curve, verified by the fast <a class="reference external" href="bitcoin_256k1">bitcoin</a> implementation - a slower curve or implementation would cause a corresponding reduction in the maximum possible throughput.</p>
+<p>These plots can also be used over longer tests to gauge outlier severity and frequency, and ensure global commit never lags significantly behind local commit. If the number of requests is increased to 200,000:</p>
+<img alt="../_images/200k_unsigned.png" src="../_images/200k_unsigned.png" />
+<img alt="../_images/200k_signed.png" src="../_images/200k_signed.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="Developer API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cryptography.html" class="btn btn-neutral float-left" title="Cryptography" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

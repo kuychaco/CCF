@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Environment Setup &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OE Engine Walkthrough" href="oeengine.html" />
+    <link rel="prev" title="Quickstart" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quickstart</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operating-system">Operating System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hardware">Hardware</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#local-development-without-sgx-virtual">Local Development without SGX (virtual)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#azure-confidential-compute">Azure Confidential Compute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-dependencies">Installing Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oeengine.html">OE Engine Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Building CCF</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Quickstart</a> &raquo;</li>
+        
+      <li>Environment Setup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/quickstart/requirements.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="environment-setup">
+<h1>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h1>
+<p>This page describes how to setup an environment to build and deploy CCF.</p>
+<p>There are two options to deploy a CCF-ready environment:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#local-development-without-sgx-virtual"><span class="std std-ref">Checkout CCF and its dependencies in a local container</span></a>. This is useful for quick prototyping using CCF <cite>virtual</cite> mode.</p></li>
+<li><p><a class="reference internal" href="#azure-confidential-compute"><span class="std std-ref">Create a SGX-enabled VM on Azure and install CCF dependencies</span></a>.</p></li>
+</ul>
+<p>Once this is done, you should look at how to <a class="reference internal" href="build.html#building-ccf"><span class="std std-ref">build CCF from source</span></a>.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="operating-system">
+<h3>Operating System<a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h3>
+<p>At the moment, CCF only builds and runs on Linux. It is primarily developed and tested on Ubuntu 18.04.</p>
+</div>
+<div class="section" id="hardware">
+<h3>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h3>
+<p>Running CCF with full security guarantees requires <a class="reference internal" href="../glossary.html#term-sgx"><span class="xref std std-term">SGX</span></a> hardware with <a class="reference internal" href="../glossary.html#term-flc"><span class="xref std std-term">FLC</span></a>.</p>
+<p>For development purposes however, it is possible to build and run CCF applications in <cite>virtual</cite> mode, i.e. without using SGX. The <cite>virtual</cite> mode does not provide any security guarantees but can be useful to quickly prototype applications or make changes to CCF itself before deploying it to a SGX-based network.</p>
+</div>
+</div>
+<div class="section" id="local-development-without-sgx-virtual">
+<h2>Local Development without SGX (virtual)<a class="headerlink" href="#local-development-without-sgx-virtual" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <cite>virtual</cite> mode does not provide any security guarantees and should only be used to prototype applications.</p>
+</div>
+<p>To quickly get a container up and running in which you can build CCF, the fastest way to go is to install Docker, <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> and the <a class="reference external" href="https://code.visualstudio.com/docs/remote/containers">Remote Container</a> extension.</p>
+<p>The CCF repository provides a sample <a class="reference external" href="https://github.com/microsoft/CCF/blob/master/.devcontainer/devcontainer.json">devcontainer.json</a> file which will build and launch a container with all necessary CCF dependencies. It can be used to develop on non-SGX machines, as long as CCF nodes are always started in <cite>virtual</cite> mode. See how to <a class="reference external" href="https://code.visualstudio.com/docs/remote/containers#_quick-start-open-a-public-git-repository-in-an-isolated-container-volume">checkout the CCF repository in an isolated container</a>.</p>
+</div>
+<div class="section" id="azure-confidential-compute">
+<h2>Azure Confidential Compute<a class="headerlink" href="#azure-confidential-compute" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These steps require an <a class="reference external" href="https://docs.microsoft.com/en-us/azure/billing/billing-create-subscription#create-a-subscription-in-the-azure-portal">Azure subscription</a>.</p>
+</div>
+<p><a class="reference internal" href="../glossary.html#term-azure-confidential-compute"><span class="xref std std-term">Azure Confidential Compute</span></a> (ACC) offers DC-series VMs using SGX hardware, which can be deployed either through a <a class="reference external" href="https://aka.ms/ccvm">Marketplace App</a>, or through the <a class="reference internal" href="../glossary.html#term-open-enclave-engine"><span class="xref std std-term">Open Enclave Engine</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Windows, you can use <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">WSL</a> or <a class="reference external" href="https://azure.microsoft.com/en-us/features/cloud-shell/">Azure Cloud Shell (Bash)</a> to run the following commands.</p>
+</div>
+<p>First, from your local machine, you should clone the CCF repository to get access to the scripts required to create and configure the CCF environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/microsoft/CCF.git
+</pre></div>
+</div>
+<p>First, you should run the <code class="docutils literal notranslate"><span class="pre">pre_make_vm.sh</span></code> script to install the <a class="reference external" href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">Azure CLI</a> and the <a class="reference internal" href="../glossary.html#term-open-enclave-engine"><span class="xref std std-term">Open Enclave Engine</span></a> (<code class="docutils literal notranslate"><span class="pre">oe-engine</span></code>) that are required to create the DC-series in Azure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> CCF/getting_started/create_vm
+$ ./pre_make_vm.sh <span class="c1"># Requires sudo privileges</span>
+</pre></div>
+</div>
+<p>Then, to quickly get a VM up and running (in the East US region), you can run the following command, specifying your personal Azure subscription as environment variable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">SUBSCRIPTION</span><span class="o">=</span><span class="nv">$AZURE_SUBSCRIPTION_NAME</span> ./make_vm.sh <span class="o">[</span>path_to_ssh_public_key<span class="o">]</span>
+</pre></div>
+</div>
+<p>After signing in to your Azure account, the script will create a default <code class="docutils literal notranslate"><span class="pre">ccf</span></code> user on the VM, authenticated by the public key specified by <code class="docutils literal notranslate"><span class="pre">path_to_ssh_public_key</span></code> (defaults to <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code>). See <a class="reference internal" href="oeengine.html#oe-engine-walkthrough"><span class="std std-ref">OE Engine Walkthrough</span></a> for further details about how to deploy an ACC VM.</p>
+<p>Then, you should ssh into your newly created vm and clone the CCF repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh ccf@ccf-dev.eastus.cloudapp.azure.com
+$ git clone https://github.com/microsoft/CCF.git
+</pre></div>
+</div>
+<p>The <a class="reference external" href="https://code.visualstudio.com/docs/remote/ssh">SSH Remote</a> extension to <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> makes it possible to develop your application directly on this VM.</p>
+</div>
+<div class="section" id="installing-dependencies">
+<h2>Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>CCF dependencies include <a class="reference external" href="https://github.com/openenclave/openenclave">OpenEnclave</a>, <a class="reference external" href="https://tls.mbed.org/">mbedtls</a>, <a class="reference external" href="https://github.com/libuv/libuv">libuv</a> and <a class="reference external" href="https://curl.haxx.se/libcurl/">libcurl</a>.</p>
+<p>To quickly set up the dependencies necessary to build CCF, simply run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> CCF/getting_started/setup_vm
+$ ./setup.sh
+</pre></div>
+</div>
+<p>Once this is complete, you can proceed to <a class="reference internal" href="build.html#building-ccf"><span class="std std-ref">Building CCF</span></a>.</p>
+<p>On a machine without SGX, you can instead use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> CCF/getting_started/setup_vm
+$ ./setup_nodriver.sh
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oeengine.html" class="btn btn-neutral float-right" title="OE Engine Walkthrough" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

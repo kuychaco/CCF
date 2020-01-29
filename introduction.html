@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CCF Concepts" href="concepts.html" />
+    <link rel="prev" title="CCF documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-consortium-first-approach">A consortium first approach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-flexible-confidentiality-layer-for-multi-party-computation">A flexible confidentiality layer for multi-party computation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/introduction.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Confidential Consortium Framework (CCF) is an open-source framework for building a new category of secure, highly available,
+and performant applications that focus on multi-party compute and data. While not limited just to blockchain applications,
+CCF can enable high-scale, confidential blockchain networks that meet key enterprise requirements
+— providing a means to accelerate production enterprise adoption of blockchain technology.</p>
+<p>Leveraging the power of trusted execution environments (<a class="reference internal" href="glossary.html#term-tee"><span class="xref std std-term">TEE</span></a>), decentralized systems concepts, and cryptography,
+CCF enables enterprise-ready computation or blockchain networks that deliver:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Throughput and latency approaching database speeds.</strong> Through its use of TEEs, the framework creates a network of remotely attestable enclaves.
+This gives a web of trust across the distributed system, allowing a user that verifies a single cryptographic quote from a CCF node to
+effectively verify the entire network. This simplifies consensus and thus improves transaction speed and latency — all without compromising security or assuming trust.</p></li>
+<li><p><strong>Richer, more flexible confidentiality models.</strong> Beyond safeguarding data access with encryption-in-use via TEEs, we use industry standards (<a class="reference internal" href="glossary.html#term-tls"><span class="xref std std-term">TLS</span></a> and remote attestation)
+to ensure secure node communication. Transactions can be processed in the clear or revealed only to authorized parties, without requiring complicated confidentiality schemes.</p></li>
+<li><p><strong>Network and service policy management through non-centralized governance.</strong> The framework provides a network and service configuration to express and manage consortium
+and multi-party policies. Governance actions, such as adding members to the governing consortium or initiating catastrophic recovery, can be managed and recorded through
+standard ledger transactions agreed upon via stakeholder voting.</p></li>
+<li><p><strong>Improved efficiency versus traditional blockchain networks.</strong> The framework improves on bottlenecks and energy consumption by eliminating computationally intensive
+consensus algorithms for data integrity, such as proof-of-work or proof-of-stake.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="a-consortium-first-approach">
+<h2>A consortium first approach<a class="headerlink" href="#a-consortium-first-approach" title="Permalink to this headline">¶</a></h2>
+<p>In a public blockchain network, anyone can transact on the network, actors on the network are pseudo-anonymous and untrusted, and anyone can add nodes to the network
+— with full access to the ledger and with the ability to participate in consensus. Similarly, other distributed data technologies (such as distributed databases)
+can have challenges in multi-party scenarios when it comes to deciding what party operates it and whether that party could choose or could be compelled to act maliciously.</p>
+<p>In contrast, in a consortium or multi-party network backed by TEEs, such as CCF, consortium member identities and node identities are known and controlled.
+A trusted network of enclaves running on physical nodes is established without requiring the actors that control those nodes to trust one another
+—  what code is run is controlled and correctness of its output can be guaranteed, simplifying the consensus methods and reducing duplicative validation of data.</p>
+<img alt="_images/ccf.svg" src="_images/ccf.svg" /><p>Microsoft has taken this approach in developing CCF: using <a class="reference internal" href="glossary.html#term-tee"><span class="xref std std-term">TEE</span></a> technology, the enclave of each node in the network (where cryptographically protected data is executed)
+can decide whether it can trust the enclaves of other nodes based on mutual attestation exchange and mutual authentication, regardless of whether the parties involved
+trust each other or not. This enables a network of verifiable, remotely attestable enclaves on which to run a distributed ledger and execute confidential and secure
+transactions in highly performant and highly available fashion.</p>
+</div>
+<div class="section" id="a-flexible-confidentiality-layer-for-multi-party-computation">
+<h2>A flexible confidentiality layer for multi-party computation<a class="headerlink" href="#a-flexible-confidentiality-layer-for-multi-party-computation" title="Permalink to this headline">¶</a></h2>
+<p>CCF currently runs on Intel <a class="reference internal" href="glossary.html#term-sgx"><span class="xref std std-term">SGX</span></a>-enabled platforms. Because CCF uses the <a class="reference internal" href="glossary.html#term-open-enclave"><span class="xref std std-term">Open Enclave</span></a> SDK
+as the foundation for running in an enclave, as <a class="reference internal" href="glossary.html#term-open-enclave"><span class="xref std std-term">Open Enclave</span></a> supports new TEE technologies, CCF will be able to run on new platforms. Networks can be run on-premises,
+in one or many cloud-hosted data centers, including <a class="reference internal" href="glossary.html#term-microsoft-azure"><span class="xref std std-term">Microsoft Azure</span></a>, or in any hybrid configuration.</p>
+<p>Ledger providers can use CCF to enable higher throughput and higher confidentiality guarantees for distributed ledger applications.
+CCF developers can write application logic (also known as smart contracts) and enforce application-level access control in several languages by conﬁguring CCF
+to embed one of several language runtimes on top of its key-value store. Clients then communicate with a running CCF service using <a class="reference internal" href="glossary.html#term-json-rpc"><span class="xref std std-term">JSON-RPC</span></a> interfaces over <a class="reference internal" href="glossary.html#term-tls"><span class="xref std std-term">TLS</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="concepts.html" class="btn btn-neutral float-right" title="CCF Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="CCF documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Key-Value Store How-To &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="KV Serialisation" href="kv_serialisation.html" />
+    <link rel="prev" title="Key-Value Store" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../members/index.html">Member Governance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Writing CCF Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../example.html">Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../build_app.html">Build and Sign Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../demo.html">End-to-end demo</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Key-Value Store</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Key-Value Store How-To</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-map">Creating a Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-the-transaction">Accessing the <code class="docutils literal notranslate"><span class="pre">Transaction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modifying-a-view">Modifying a <code class="docutils literal notranslate"><span class="pre">View</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#removing-a-key">Removing a key</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#global-commit">Global commit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kv_serialisation.html">KV Serialisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api.html">Key-Value Store API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ledger.html">Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cryptography.html">Cryptography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance.html">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html">Developer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Writing CCF Applications</a> &raquo;</li>
+        
+          <li><a href="index.html">Key-Value Store</a> &raquo;</li>
+        
+      <li>Key-Value Store How-To</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/developers/kv/kv_how_to.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="key-value-store-how-to">
+<h1>Key-Value Store How-To<a class="headerlink" href="#key-value-store-how-to" title="Permalink to this headline">¶</a></h1>
+<p>The Key-Value <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Store</span></code> is a collection of <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Maps</span></code> that are available from all the end-points of an application. There is one unique <code class="docutils literal notranslate"><span class="pre">Store</span></code> created in the enclave of each node that is passed to the constructor of all applications.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">Store</span> <span class="n">tables</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="section" id="creating-a-map">
+<h2>Creating a Map<a class="headerlink" href="#creating-a-map" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map</span></code> (often referred to as a <code class="docutils literal notranslate"><span class="pre">Table</span></code>) is created in the constructor of an application. It maps a unique <code class="docutils literal notranslate"><span class="pre">key</span></code> to a <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<p>When a <code class="docutils literal notranslate"><span class="pre">Map</span></code> is created, its name and the types of the key and value mapping should be specified.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">Map</span></code> can either be created as private (default) or public. Transactions on private maps are written to the ledger in encrypted form and can only be decrypted in the enclave of the nodes that have joined the network. Transactions on public maps are written to the ledger as plaintext and can be read from outside the enclave (only their integrity is protected). The security domain of a map (public or private) cannot be changed after its creation.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="c1">// Private map. Mapping: string -&gt; string</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">map_priv</span> <span class="o">=</span> <span class="n">tables</span><span class="p">.</span><span class="n">create</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;map1&quot;</span><span class="p">);</span>
+
+<span class="c1">// Public map. Mapping: string -&gt; string</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">map_pub</span> <span class="o">=</span> <span class="n">tables</span><span class="p">.</span><span class="n">create</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;map2&quot;</span><span class="p">,</span> <span class="n">kv</span><span class="o">::</span><span class="n">SecurityDomain</span><span class="o">::</span><span class="n">PUBLIC</span><span class="p">);</span>
+
+<span class="c1">// Private map. Mapping: uint64_t -&gt; string</span>
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">map_priv_int</span> <span class="o">=</span> <span class="n">tables</span><span class="p">.</span><span class="n">create</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;map3&quot;</span><span class="p">,</span> <span class="n">kv</span><span class="o">::</span><span class="n">SecurityDomain</span><span class="o">::</span><span class="n">PRIVATE</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-the-transaction">
+<h2>Accessing the <code class="docutils literal notranslate"><span class="pre">Transaction</span></code><a class="headerlink" href="#accessing-the-transaction" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Tx</span></code> corresponds to the atomic operations that can be executed on the Key-Value <code class="docutils literal notranslate"><span class="pre">Store</span></code>. A transaction can affect one or multiple <code class="docutils literal notranslate"><span class="pre">Map</span></code> and are automatically committed by CCF once a RPC handler returns.</p>
+<p>A single <code class="docutils literal notranslate"><span class="pre">Transaction</span></code> (<code class="docutils literal notranslate"><span class="pre">tx</span></code>) is passed to all the end-points of an application and should be used to interact with the Key-Value <code class="docutils literal notranslate"><span class="pre">Store</span></code>.</p>
+<p>When the end-point successfully completes, the node on which the end-point was triggered attempts to commit the transaction to apply the changes to the Store. Once the transaction is committed successfully, it is automatically replicated by CCF and should globally commit.</p>
+<p>For each <code class="docutils literal notranslate"><span class="pre">Map</span></code> that a Transaction wants to write to or read from, a <a class="reference internal" href="api.html#_CPPv4N2kv3Map6TxViewE" title="kv::Map::TxView"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView</span></code></a> should first be acquired.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// View on map_priv</span>
+<span class="k">auto</span> <span class="n">view_map1</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">map_priv</span><span class="p">);</span>
+
+<span class="c1">// Two Views created at the same time on map_pub and map_priv_int, respectively</span>
+<span class="k">auto</span> <span class="p">[</span><span class="n">view_map2</span><span class="p">,</span> <span class="n">view_map3</span><span class="p">]</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">map_pub</span><span class="p">,</span> <span class="n">map_priv_int</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modifying-a-view">
+<h2>Modifying a <code class="docutils literal notranslate"><span class="pre">View</span></code><a class="headerlink" href="#modifying-a-view" title="Permalink to this headline">¶</a></h2>
+<p>Once a <code class="docutils literal notranslate"><span class="pre">View</span></code> on a specific <code class="docutils literal notranslate"><span class="pre">Map</span></code> has been obtained, it is possible to:</p>
+<ul class="simple">
+<li><p>write (<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView::put</span></code>) a new value for a key;</p></li>
+<li><p>read (<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView::get</span></code>) the value associated with a key;</p></li>
+<li><p>delete (<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView::remove</span></code>) a Key-Value pair.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Writing to a View over map_priv</span>
+<span class="n">view_map1</span><span class="o">-&gt;</span><span class="n">put</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">,</span> <span class="s">&quot;value1&quot;</span><span class="p">);</span>
+
+<span class="c1">// Reading from that View</span>
+<span class="k">auto</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">view_map1</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="p">.</span><span class="n">value</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;value1&quot;</span><span class="p">);</span>
+
+<span class="c1">// Removing the only key-pair in that View</span>
+<span class="n">view_map1</span><span class="o">-&gt;</span><span class="n">remove</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span>
+
+<span class="c1">// View is now empty</span>
+<span class="n">view_map1</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">v1</span><span class="p">.</span><span class="n">has_value</span><span class="p">()</span> <span class="o">==</span> <span class="nb">false</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="removing-a-key">
+<h2>Removing a key<a class="headerlink" href="#removing-a-key" title="Permalink to this headline">¶</a></h2>
+<p>If a Key-Value pair was written to a <code class="docutils literal notranslate"><span class="pre">Map</span></code> by a previous <code class="docutils literal notranslate"><span class="pre">Transaction</span></code>, it is possible to delete this key. Because of the append-only nature of the <code class="docutils literal notranslate"><span class="pre">Store</span></code>, this Key-Value pair is not actually removed from the <code class="docutils literal notranslate"><span class="pre">Map</span></code> but instead explicitly marked as deleted from the version that the corresponding <code class="docutils literal notranslate"><span class="pre">Transaction</span></code> is committed at.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Assuming that &quot;key1&quot; has already been committed</span>
+<span class="n">Store</span><span class="o">::</span><span class="n">Tx</span> <span class="n">tx</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">view_map1</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">map_priv</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">v</span> <span class="o">=</span> <span class="n">view_map1</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span> <span class="c1">// v.value() == &quot;value1&quot;</span>
+<span class="n">view_map1</span><span class="o">-&gt;</span><span class="n">remove</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">rc</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">commit</span><span class="p">();</span>
+
+<span class="c1">// New Transaction</span>
+<span class="n">Store</span><span class="o">::</span><span class="n">Tx</span> <span class="n">tx_new</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">view_map1_new</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">map_priv</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">view_map1_new</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span> <span class="c1">// v1.has_value() == false</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="global-commit">
+<h2>Global commit<a class="headerlink" href="#global-commit" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">Map</span></code> is globally committed at a specific <a class="reference internal" href="api.html#_CPPv4N2kv7VersionE" title="kv::Version"><code class="xref cpp cpp-type docutils literal notranslate"><span class="pre">kv::Version</span></code></a> when it is not possible to access the state of that <code class="docutils literal notranslate"><span class="pre">Map</span></code> prior to that version.
+This is useful when it is certain that the state of the <code class="docutils literal notranslate"><span class="pre">Store</span></code> prior to a specific version will never need to be read or modified. A transaction is automatically globally committed once the consensus protocol has established that a majority of nodes in the CCF network have successfully committed that transaction.</p>
+<p>The <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView::get_globally_committed</span></code> member function returns the value of a key that we know has been globally committed.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Assuming that &quot;key1&quot;:&quot;value1&quot; has already been committed</span>
+<span class="k">auto</span> <span class="n">view_map1</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">map_priv</span><span class="p">);</span>
+
+<span class="c1">// &quot;key1&quot; has not yet been globally committed</span>
+<span class="k">auto</span> <span class="n">v</span> <span class="o">=</span> <span class="n">view_map1</span><span class="p">.</span><span class="n">get_globally_committed</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">has_value</span><span class="p">()</span> <span class="o">==</span> <span class="nb">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Meanwhile, the CCF network globally commits the transaction in which &quot;key1&quot; was written</span>
+<span class="k">auto</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">view_map1</span><span class="p">.</span><span class="n">get_globally_committed</span><span class="p">(</span><span class="s">&quot;key1&quot;</span><span class="p">);</span> <span class="c1">// v1.has_value() == &quot;value1&quot;</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">value</span><span class="p">()</span> <span class="o">==</span> <span class="s">&quot;value1&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="miscellaneous">
+<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="custom-key-and-value-types">
+<h3>Custom key and value types<a class="headerlink" href="#custom-key-and-value-types" title="Permalink to this headline">¶</a></h3>
+<p>User-defined types can also be used for the types of the key and value mapping of each <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map</span></code>. When defining each custom type, the following conditions must be met:</p>
+<ul class="simple">
+<li><p>For both the custom key and value types, the <code class="docutils literal notranslate"><span class="pre">MSGPACK_DEFINE();</span></code> macro should be used to declare each members of the custom type for serialisation.</p></li>
+<li><p>For the custom key type, the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator should be defined.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">CustomKey</span>
+<span class="p">{</span>
+    <span class="kt">uint64_t</span> <span class="n">id</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+
+    <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">CustomKey</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">id</span> <span class="o">==</span> <span class="n">other</span><span class="p">.</span><span class="n">id</span> <span class="o">&amp;&amp;</span> <span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">MSGPACK_DEFINE</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">CustomValue</span>
+<span class="p">{</span>
+    <span class="kt">uint64_t</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+
+    <span class="n">MSGPACK_DEFINE</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="k">auto</span><span class="o">&amp;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">tables</span><span class="p">.</span><span class="n">create</span><span class="o">&lt;</span><span class="n">CustomKey</span><span class="p">,</span> <span class="n">CustomValue</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;map&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="foreach">
+<h3><code class="docutils literal notranslate"><span class="pre">foreach()</span></code><a class="headerlink" href="#foreach" title="Permalink to this headline">¶</a></h3>
+<p>Key-value pairs can only be retrieved (<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView::get</span></code>) from a key. However, it is sometimes necessary to access the key for a given value.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">View</span></code> offers a <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView::foreach</span></code> member function to iterate over all the elements written to that <code class="docutils literal notranslate"><span class="pre">Map</span></code> so far and run a lambda function for each Key-Value pair. Note that a <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Map::TxView::foreach</span></code> loop can be ended early by returning <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="c1">// Assuming that &quot;key1&quot;:&quot;value1&quot; and &quot;key2&quot;:&quot;value2&quot; have already been committed</span>
+<span class="n">Store</span><span class="o">::</span><span class="n">Tx</span> <span class="n">tx</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">view_map1</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">map_priv</span><span class="p">);</span>
+
+<span class="c1">// Outputs:</span>
+<span class="c1">//  key: key1 - value: value1</span>
+<span class="c1">//  key: key2 - value: value2</span>
+<span class="n">view_map1</span><span class="o">-&gt;</span><span class="n">foreach</span><span class="p">([](</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">key</span><span class="p">,</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; key: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">key</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; - value: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="cm">/* condition*/</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kv_serialisation.html" class="btn btn-neutral float-right" title="KV Serialisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Key-Value Store" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

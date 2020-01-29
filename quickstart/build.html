@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Building CCF &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Member Governance" href="../members/index.html" />
+    <link rel="prev" title="OE Engine Walkthrough" href="oeengine.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quickstart</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="requirements.html">Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oeengine.html">OE Engine Walkthrough</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Building CCF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-from-source">Building from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-switches">Build switches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Quickstart</a> &raquo;</li>
+        
+      <li>Building CCF</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/quickstart/build.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="building-ccf">
+<h1>Building CCF<a class="headerlink" href="#building-ccf" title="Permalink to this headline">¶</a></h1>
+<p>Once you have cloned the CCF repository, setup your VM and installed all dependencies (see <a class="reference internal" href="requirements.html#requirements"><span class="std std-ref">Requirements</span></a>), you will be able to successfully build and run the CCF test suite that will deploy a local CCF network.</p>
+<div class="section" id="building-from-source">
+<h2>Building from Source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">¶</a></h2>
+<p>To build CCF from source on a SGX-enabled machine, run the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> CCF
+$ mkdir build
+$ <span class="nb">cd</span> build
+$ cmake -GNinja ..
+$ ninja
+</pre></div>
+</div>
+<p>Alternatively, on a non-SGX machine, you can build a <cite>virtual</cite> instance of CCF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> CCF
+$ mkdir build
+$ <span class="nb">cd</span> build
+$ cmake -GNinja -DTARGET<span class="o">=</span>virtual ..
+$ ninja
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-switches">
+<h2>Build switches<a class="headerlink" href="#build-switches" title="Permalink to this headline">¶</a></h2>
+<p>The full list of build switches can be obtained by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cmake -L ..
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>BUILD_TESTS</strong>: Boolean. Build all tests for CCF. Default to ON.</p></li>
+<li><p><strong>BUILD_SMALLBANK</strong>: Boolean. Build SmallBank performance benchmark. Default to OFF.</p></li>
+<li><p><strong>CLIENT_MBEDTLS_PREFIX</strong>: Path. Prefix to mbedtls install to be used by test clients. Default to <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code>.</p></li>
+<li><p><strong>SERVICE_IDENTITY_CURVE_CHOICE</strong>: String, one of <code class="docutils literal notranslate"><span class="pre">secp384r1</span></code>, <code class="docutils literal notranslate"><span class="pre">ed25519</span></code>, <code class="docutils literal notranslate"><span class="pre">secp256k1_mbedtls</span></code>, <code class="docutils literal notranslate"><span class="pre">secp256k1_bitcoin</span></code>. Elliptic curve to use for CCF network and node identities. Defaults to <code class="docutils literal notranslate"><span class="pre">secp384r1</span></code>.</p></li>
+<li><p><strong>NO_STRICT_TLS_CIPHERSUITES</strong>: Boolean. Relax the list of accepted TLS ciphersuites. Default to OFF.</p></li>
+<li><p><strong>OE_PREFIX</strong>: Path. Open Enclave install prefix. Default to <code class="docutils literal notranslate"><span class="pre">/opt/openenclave</span></code>.</p></li>
+<li><p><strong>SAN</strong>: Boolean. Build unit tests with Address and Undefined behaviour sanitizers enabled. Default to OFF.</p></li>
+<li><p><strong>TARGET</strong>: String, one of <code class="docutils literal notranslate"><span class="pre">sgx</span></code>, <code class="docutils literal notranslate"><span class="pre">virtual</span></code>, or <code class="docutils literal notranslate"><span class="pre">sgx;virtual</span></code>. Defaults to <code class="docutils literal notranslate"><span class="pre">sgx;virtual</span></code>, which builds both “virtual” enclaves and actual SGX enclaves.</p></li>
+<li><p><strong>VERBOSE_LOGGING</strong>: Boolean. Enable all logging levels. Default to OFF.</p></li>
+</ul>
+</div>
+<div class="section" id="running-tests">
+<h2>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h2>
+<p>Tests can be started through the <code class="docutils literal notranslate"><span class="pre">tests.sh</span></code> wrapper for ctest:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> build
+$ ./tests.sh -VV
+</pre></div>
+</div>
+<p>Although CCF’s unit tests can be run through <code class="docutils literal notranslate"><span class="pre">ctest</span></code> directly, the end-to-end tests that start a network require some Python infrastructure. <a class="reference external" href="https://github.com/microsoft/CCF/blob/master/tests/tests.sh">tests.sh</a> will set up a virtual environment with these dependencies and activate it before running <code class="docutils literal notranslate"><span class="pre">ctest</span></code>. Further runs will re-use that virtual environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On a full build of CCF, it is also possible to run tests with virtual enclaves by setting <code class="docutils literal notranslate"><span class="pre">TEST_ENCLAVE</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nv">TEST_ENCLAVE</span><span class="o">=</span>virtual ./tests.sh -VV
+</pre></div>
+</div>
+<p>Tests that require enclave attestation will be skipped.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../members/index.html" class="btn btn-neutral float-right" title="Member Governance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="oeengine.html" class="btn btn-neutral float-left" title="OE Engine Walkthrough" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Logging (C++) &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Logging (Lua)" href="logging_lua.html" />
+    <link rel="prev" title="Example Application" href="example.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Writing CCF Applications</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="example.html">Example Application</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="example.html#description">Description</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="example.html#implementations">Implementations</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Logging (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="logging_lua.html">Logging (Lua)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="logging_rpc_api.html">Logging RPC API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html">Build and Sign Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">End-to-end demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/index.html">Key-Value Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html">Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Cryptography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">Developer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Writing CCF Applications</a> &raquo;</li>
+        
+          <li><a href="example.html">Example Application</a> &raquo;</li>
+        
+      <li>Logging (C++)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/developers/logging_cpp.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="logging-c">
+<h1>Logging (C++)<a class="headerlink" href="#logging-c" title="Permalink to this headline">¶</a></h1>
+<p>A C++ transaction engine exposes itself to CCF by implementing:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/** To be implemented by the CCF application</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param network Access to the network&#39;s tables</span>
+<span class="cm"> * @param notifier Access to host notification service</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return Shared pointer to the application handler instance</span>
+<span class="cm"> *</span>
+<span class="cm"> * @see `ccf::RpcFrontend`</span>
+<span class="cm"> */</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">enclave</span><span class="o">::</span><span class="n">RpcHandler</span><span class="o">&gt;</span> <span class="n">get_rpc_handler</span><span class="p">(</span>
+  <span class="n">ccf</span><span class="o">::</span><span class="n">NetworkTables</span><span class="o">&amp;</span> <span class="n">network</span><span class="p">,</span> <span class="n">ccf</span><span class="o">::</span><span class="n">AbstractNotifier</span><span class="o">&amp;</span> <span class="n">notifier</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The Logging application simply has:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">enclave</span><span class="o">::</span><span class="n">RpcHandler</span><span class="o">&gt;</span> <span class="n">get_rpc_handler</span><span class="p">(</span>
+  <span class="n">NetworkTables</span><span class="o">&amp;</span> <span class="n">nwt</span><span class="p">,</span> <span class="n">AbstractNotifier</span><span class="o">&amp;</span> <span class="n">notifier</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="p">(</span><span class="n">nwt</span><span class="p">,</span> <span class="n">notifier</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">kv::Store</span></code> tables are essentially the only interface between CCF
+and the application, and the sole mechanism for it to have state.</p>
+<p>The Logging application keeps its state in a pair of tables, one containing private encrypted logs and the other containing public unencrypted logs. Their type is defined as:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Table</span> <span class="o">=</span> <span class="n">Store</span><span class="o">::</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Table creation happens in the app’s constructor:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">LoggerHandlers</span><span class="p">(</span><span class="n">NetworkTables</span><span class="o">&amp;</span> <span class="n">nwt</span><span class="p">,</span> <span class="n">AbstractNotifier</span><span class="o">&amp;</span> <span class="n">notifier</span><span class="p">)</span> <span class="o">:</span>
+  <span class="n">UserHandlerRegistry</span><span class="p">(</span><span class="n">nwt</span><span class="p">),</span>
+  <span class="n">records</span><span class="p">(</span>
+    <span class="n">nwt</span><span class="p">.</span><span class="n">tables</span><span class="o">-&gt;</span><span class="n">create</span><span class="o">&lt;</span><span class="n">Table</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;records&quot;</span><span class="p">,</span> <span class="n">kv</span><span class="o">::</span><span class="n">SecurityDomain</span><span class="o">::</span><span class="n">PRIVATE</span><span class="p">)),</span>
+  <span class="n">public_records</span><span class="p">(</span><span class="n">nwt</span><span class="p">.</span><span class="n">tables</span><span class="o">-&gt;</span><span class="n">create</span><span class="o">&lt;</span><span class="n">Table</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="s">&quot;public_records&quot;</span><span class="p">,</span> <span class="n">kv</span><span class="o">::</span><span class="n">SecurityDomain</span><span class="o">::</span><span class="n">PUBLIC</span><span class="p">)),</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rpc-handler">
+<h2>RPC Handler<a class="headerlink" href="#rpc-handler" title="Permalink to this headline">¶</a></h2>
+<p>The handler returned by <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">ccfapp::getRpcHandler()</span></code> needs to subclass <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">ccf::UserRpcFrontend</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LoggerHandlers</span> <span class="o">:</span> <span class="k">public</span> <span class="n">UserHandlerRegistry</span>
+</pre></div>
+</div>
+<p>The constructor then needs to create a handler function or lambda for each transaction type. This takes a transaction object and the request’s <code class="docutils literal notranslate"><span class="pre">params</span></code>, interacts with the KV tables, and returns a result:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">get</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="n">Store</span><span class="o">::</span><span class="n">Tx</span><span class="o">&amp;</span> <span class="n">tx</span><span class="p">,</span> <span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">params</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">in</span> <span class="o">=</span> <span class="n">params</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">LoggingGet</span><span class="o">::</span><span class="n">In</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">auto</span> <span class="n">view</span> <span class="o">=</span> <span class="n">tx</span><span class="p">.</span><span class="n">get_view</span><span class="p">(</span><span class="n">records</span><span class="p">);</span>
+  <span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="n">view</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">(</span><span class="n">in</span><span class="p">.</span><span class="n">id</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">has_value</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">make_success</span><span class="p">(</span><span class="n">LoggingGet</span><span class="o">::</span><span class="n">Out</span><span class="p">{</span><span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">()});</span>
+
+  <span class="k">return</span> <span class="nf">make_error</span><span class="p">(</span>
+    <span class="n">LoggerErrors</span><span class="o">::</span><span class="n">UNKNOWN_ID</span><span class="p">,</span> <span class="n">fmt</span><span class="o">::</span><span class="n">format</span><span class="p">(</span><span class="s">&quot;No such record: {}&quot;</span><span class="p">,</span> <span class="n">in</span><span class="p">.</span><span class="n">id</span><span class="p">));</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Each function is installed as the handler for a specific RPC <code class="docutils literal notranslate"><span class="pre">method</span></code>, optionally with schema included:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">install_with_auto_schema</span><span class="o">&lt;</span><span class="n">LoggingGet</span><span class="o">&gt;</span><span class="p">(</span>
+</pre></div>
+</div>
+<p>A handler can either be installed as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Write</span></code>: this handler can only be executed on the primary of the consensus network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Read</span></code>: this handler can be executed on any node of the network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MayWrite</span></code>: the execution of this handler on a specific node depends on the value of the <code class="docutils literal notranslate"><span class="pre">&quot;readonly&quot;</span></code> parameter in the JSON-RPC command.</p></li>
+</ul>
+<div class="section" id="app-defined-errors">
+<h3>App-defined errors<a class="headerlink" href="#app-defined-errors" title="Permalink to this headline">¶</a></h3>
+<p>Applications can define their own error codes. These should be between <code class="docutils literal notranslate"><span class="pre">-32050</span></code> and <code class="docutils literal notranslate"><span class="pre">-32099</span></code> to avoid conflicting with CCF’s error codes. The Logging application returns errors if the user tries to get an id which has not been logged, or tries to log an empty message. These error codes should be given their own <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span></code>, and a <code class="docutils literal notranslate"><span class="pre">get_error_prefix</span></code> function should be defined in the same namespace to help users distinguish error messages:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">enum</span> <span class="k">class</span> <span class="nc">LoggerErrors</span> <span class="o">:</span> <span class="n">jsonrpc</span><span class="o">::</span><span class="n">ErrorBaseType</span>
+<span class="p">{</span>
+  <span class="n">UNKNOWN_ID</span> <span class="o">=</span>
+    <span class="p">(</span><span class="n">jsonrpc</span><span class="o">::</span><span class="n">ErrorBaseType</span><span class="p">)</span><span class="n">jsonrpc</span><span class="o">::</span><span class="n">CCFErrorCodes</span><span class="o">::</span><span class="n">APP_ERROR_START</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="n">MESSAGE_EMPTY</span> <span class="o">=</span> <span class="n">UNKNOWN_ID</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">get_error_prefix</span><span class="p">(</span><span class="n">LoggerErrors</span> <span class="n">ec</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
+  <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;[&quot;</span><span class="p">;</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">ec</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">case</span> <span class="p">(</span><span class="n">LoggerErrors</span><span class="o">::</span><span class="n">UNKNOWN_ID</span><span class="p">)</span><span class="o">:</span>
+    <span class="p">{</span>
+      <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;UNKNOWN_ID&quot;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">case</span> <span class="p">(</span><span class="n">LoggerErrors</span><span class="o">::</span><span class="n">MESSAGE_EMPTY</span><span class="p">)</span><span class="o">:</span>
+    <span class="p">{</span>
+      <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;MESSAGE_EMPTY&quot;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">default</span><span class="o">:</span>
+    <span class="p">{</span>
+      <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;UNKNOWN LOGGER ERROR&quot;</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;]: &quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="api-schema">
+<h3>API Schema<a class="headerlink" href="#api-schema" title="Permalink to this headline">¶</a></h3>
+<p>These handlers also demonstrate two different ways of defining schema for RPCs, and validating incoming requests against them. The record/get methods operating on public tables have manually defined schema and use <a class="footnote-reference brackets" href="#valijson" id="id1">1</a> for validation, returning an error if the input is not compliant with the schema:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">record_public</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="n">Store</span><span class="o">::</span><span class="n">Tx</span><span class="o">&amp;</span> <span class="n">tx</span><span class="p">,</span> <span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">params</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">validation_error</span> <span class="o">=</span>
+    <span class="n">validate</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">record_public_params_schema</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">validation_error</span><span class="p">.</span><span class="n">has_value</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">make_error</span><span class="p">(</span>
+      <span class="n">jsonrpc</span><span class="o">::</span><span class="n">StandardErrorCodes</span><span class="o">::</span><span class="n">PARSE_ERROR</span><span class="p">,</span> <span class="o">*</span><span class="n">validation_error</span><span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>This provides robust, extensible validation using the full JSON schema spec.</p>
+<p>The methods operating on private tables use an alternative approach, with a macro-generated schema and parser converting compliant requests into a PoD C++ object:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">LoggingRecord</span>
+<span class="p">{</span>
+  <span class="k">struct</span> <span class="n">In</span>
+  <span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">id</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">msg</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">LoggingGet</span>
+<span class="p">{</span>
+  <span class="k">struct</span> <span class="n">In</span>
+  <span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">id</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="k">struct</span> <span class="n">Out</span>
+  <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">msg</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="n">DECLARE_JSON_TYPE</span><span class="p">(</span><span class="n">LoggingRecord</span><span class="o">::</span><span class="n">In</span><span class="p">);</span>
+<span class="n">DECLARE_JSON_REQUIRED_FIELDS</span><span class="p">(</span><span class="n">LoggingRecord</span><span class="o">::</span><span class="n">In</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+
+<span class="n">DECLARE_JSON_TYPE</span><span class="p">(</span><span class="n">LoggingGet</span><span class="o">::</span><span class="n">In</span><span class="p">);</span>
+<span class="n">DECLARE_JSON_REQUIRED_FIELDS</span><span class="p">(</span><span class="n">LoggingGet</span><span class="o">::</span><span class="n">In</span><span class="p">,</span> <span class="n">id</span><span class="p">);</span>
+<span class="n">DECLARE_JSON_TYPE</span><span class="p">(</span><span class="n">LoggingGet</span><span class="o">::</span><span class="n">Out</span><span class="p">);</span>
+<span class="n">DECLARE_JSON_REQUIRED_FIELDS</span><span class="p">(</span><span class="n">LoggingGet</span><span class="o">::</span><span class="n">Out</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">record</span> <span class="o">=</span> <span class="p">[</span><span class="k">this</span><span class="p">](</span><span class="n">Store</span><span class="o">::</span><span class="n">Tx</span><span class="o">&amp;</span> <span class="n">tx</span><span class="p">,</span> <span class="k">const</span> <span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">&amp;</span> <span class="n">params</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="k">auto</span> <span class="n">in</span> <span class="o">=</span> <span class="n">params</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="n">LoggingRecord</span><span class="o">::</span><span class="n">In</span><span class="o">&gt;</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>This produces validation error messages with a lower performance overhead, and ensures the schema and parsing logic stay in sync, but is only suitable for simple schema with required and optional fields of supported types.</p>
+<p>Both approaches register their RPC’s params and result schema, allowing them to be retrieved at runtime with calls to the getSchema RPC.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="valijson"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://github.com/tristanpenman/valijson">Valijson is a header-only JSON Schema Validation library for C++11</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="logging_lua.html" class="btn btn-neutral float-right" title="Logging (Lua)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="example.html" class="btn btn-neutral float-left" title="Example Application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

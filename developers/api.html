@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer API &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Operating a Network" href="../operators/index.html" />
+    <link rel="prev" title="Performance" href="performance.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Writing CCF Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html">Build and Sign Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">End-to-end demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/index.html">Key-Value Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html">Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Cryptography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Developer API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#application-entry-point">Application Entry Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#application-handler">Application Handler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Writing CCF Applications</a> &raquo;</li>
+        
+      <li>Developer API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/developers/api.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-api">
+<h1>Developer API<a class="headerlink" href="#developer-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="application-entry-point">
+<h2>Application Entry Point<a class="headerlink" href="#application-entry-point" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="_CPPv4N6ccfapp15get_rpc_handlerERN3ccf13NetworkTablesERN3ccf16AbstractNotifierE">
+<span id="_CPPv3N6ccfapp15get_rpc_handlerERN3ccf13NetworkTablesERN3ccf16AbstractNotifierE"></span><span id="_CPPv2N6ccfapp15get_rpc_handlerERN3ccf13NetworkTablesERN3ccf16AbstractNotifierE"></span><span id="ccfapp::get_rpc_handler__ccf::NetworkTablesR.ccf::AbstractNotifierR"></span><span class="target" id="jsgeneric_8cpp_1a894163694750d09e4a5d57cc947c206c"></span>std::shared_ptr&lt;enclave::RpcHandler&gt; <code class="sig-prename descclassname">ccfapp<code class="sig-prename descclassname">::</code></code><code class="sig-name descname">get_rpc_handler</code><span class="sig-paren">(</span>ccf::NetworkTables &amp;<em>network</em>, ccf::AbstractNotifier &amp;<em>notifier</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6ccfapp15get_rpc_handlerERN3ccf13NetworkTablesERN3ccf16AbstractNotifierE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>To be implemented by the CCF application</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Shared pointer to the application handler instance</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><code class="docutils literal notranslate"><a class="reference internal" href="#classccf_1_1RpcFrontend"><span class="std std-ref"><span class="pre">ccf::RpcFrontend</span></span></a></code> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">network</span></code>: Access to the network’s tables </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">notifier</span></code>: Access to host notification service</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="application-handler">
+<h2>Application Handler<a class="headerlink" href="#application-handler" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv4N3ccf11RpcFrontendE">
+<span id="_CPPv3N3ccf11RpcFrontendE"></span><span id="_CPPv2N3ccf11RpcFrontendE"></span><span id="ccf::RpcFrontend"></span><span class="target" id="classccf_1_1RpcFrontend"></span><em class="property">class </em><code class="sig-name descname">RpcFrontend</code> : <em class="property">public</em> enclave::RpcHandler, <em class="property">public</em> ccf::ForwardedRpcHandler<a class="headerlink" href="#_CPPv4N3ccf11RpcFrontendE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by ccf::MemberRpcFrontend, ccf::NodeRpcFrontend, ccf::UserRpcFrontend, TestAppErrorFrontEnd, TestNoCertsFrontend</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv4N3ccf11RpcFrontend7processENSt10shared_ptrIN7enclave10RpcContextEEE">
+<span id="_CPPv3N3ccf11RpcFrontend7processENSt10shared_ptrIN7enclave10RpcContextEEE"></span><span id="_CPPv2N3ccf11RpcFrontend7processENSt10shared_ptrIN7enclave10RpcContextEEE"></span><span id="ccf::RpcFrontend::process__std::shared_ptr:enclave::RpcContext:"></span><span class="target" id="classccf_1_1RpcFrontend_1ae1403951d338f907aecf4dffb21effd3"></span>std::optional&lt;std::vector&lt;uint8_t&gt;&gt; <code class="sig-name descname">process</code><span class="sig-paren">(</span>std::shared_ptr&lt;enclave::RpcContext&gt; <em>ctx</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3ccf11RpcFrontend7processENSt10shared_ptrIN7enclave10RpcContextEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Process a serialised command with the associated RPC context</p>
+<p>If an RPC that requires writing to the kv store is processed on a backup, the serialised RPC is forwarded to the current network primary.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>nullopt if the result is pending (to be forwarded, or still to-be-executed by consensus), else the response (may contain error) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctx</span></code>: Context for this RPC </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N3ccf11RpcFrontend12process_pbftENSt10shared_ptrIN7enclave10RpcContextEEEb">
+<span id="_CPPv3N3ccf11RpcFrontend12process_pbftENSt10shared_ptrIN7enclave10RpcContextEEEb"></span><span id="_CPPv2N3ccf11RpcFrontend12process_pbftENSt10shared_ptrIN7enclave10RpcContextEEEb"></span><span id="ccf::RpcFrontend::process_pbft__std::shared_ptr:enclave::RpcContext:.b"></span><span class="target" id="classccf_1_1RpcFrontend_1a583d805a85b74e97320d7b7105a73f25"></span>ProcessPbftResp <code class="sig-name descname">process_pbft</code><span class="sig-paren">(</span>std::shared_ptr&lt;enclave::RpcContext&gt; <em>ctx</em>, bool <em>include_merkle_roots</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3ccf11RpcFrontend12process_pbftENSt10shared_ptrIN7enclave10RpcContextEEEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Process a serialised command with the associated RPC context via PBFT</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctx</span></code>: Context for this RPC </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N3ccf11RpcFrontend17process_forwardedENSt10shared_ptrIN7enclave10RpcContextEEE">
+<span id="_CPPv3N3ccf11RpcFrontend17process_forwardedENSt10shared_ptrIN7enclave10RpcContextEEE"></span><span id="_CPPv2N3ccf11RpcFrontend17process_forwardedENSt10shared_ptrIN7enclave10RpcContextEEE"></span><span id="ccf::RpcFrontend::process_forwarded__std::shared_ptr:enclave::RpcContext:"></span><span class="target" id="classccf_1_1RpcFrontend_1a4669d9117f3cae1f9f4c4d93b77c69e7"></span>std::vector&lt;uint8_t&gt; <code class="sig-name descname">process_forwarded</code><span class="sig-paren">(</span>std::shared_ptr&lt;enclave::RpcContext&gt; <em>ctx</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3ccf11RpcFrontend17process_forwardedENSt10shared_ptrIN7enclave10RpcContextEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Process a serialised input forwarded from another node</p>
+<p>This function assumes that ctx contains the caller_id as read by the forwarding backup.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Serialised reply to send back to forwarder node </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctx</span></code>: Context for this forwarded RPC</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../operators/index.html" class="btn btn-neutral float-right" title="Operating a Network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="performance.html" class="btn btn-neutral float-left" title="Performance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

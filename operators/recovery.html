@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Catastrophic Recovery &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Node Output" href="node_output.html" />
+    <link rel="prev" title="Starting a New Network" href="start_network.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Operating a Network</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="start_network.html">Starting a New Network</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Catastrophic Recovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#establishing-a-recovered-public-network">Establishing a Recovered Public Network</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="node_output.html">Node Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operator_rpc_api.html">Operator RPC API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_usage.html">Resource Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Operating a Network</a> &raquo;</li>
+        
+      <li>Catastrophic Recovery</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/operators/recovery.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="catastrophic-recovery">
+<h1>Catastrophic Recovery<a class="headerlink" href="#catastrophic-recovery" title="Permalink to this headline">¶</a></h1>
+<p>For unexpected reasons, a significant number <a class="footnote-reference brackets" href="#crash" id="id1">1</a> of CCF nodes may become unavailable. In this catastrophic scenario, it is possible that the length of ledgers of each node may differ slightly since some transactions may not have yet been fully replicated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The current version of the recovery protocol relies on Intel SGX Sealing capability <a class="footnote-reference brackets" href="#sealing" id="id2">2</a>.</p>
+</div>
+<p>However, one of the previous ledgers can be recovered and the execution of new business transactions continue if the following three conditions are met:</p>
+<ul class="simple">
+<li><p>At least one of the old nodes’ CPU survived.</p></li>
+<li><p>The sealed network secret file (<code class="docutils literal notranslate"><span class="pre">sealed_secrets.&lt;date&gt;.&lt;pid&gt;</span></code>) associated with that CPU is available to a <a class="reference internal" href="../glossary.html#term-quorum"><span class="xref std std-term">quorum</span></a> of members.</p></li>
+<li><p>One of the ledgers (preferably the ledger of the previous primary as it is likely to be the longest) is available.</p></li>
+</ul>
+<p>The recovery protocol consists of two phases. First, the public transactions of the previous network are restored and the new network established. Then, after the members have agreed that the configuration of the new network is suitable, the sealed network secrets can be restored by a new set of trusted nodes and the previous private transactions recovered.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before attempting to recover a network, it is recommended to make a copy of all available ledgers and sealed secrets files.</p>
+</div>
+<div class="section" id="establishing-a-recovered-public-network">
+<h2>Establishing a Recovered Public Network<a class="headerlink" href="#establishing-a-recovered-public-network" title="Permalink to this headline">¶</a></h2>
+<p>To initiate the first phase of the recovery protocol, one or several nodes should be started with the <code class="docutils literal notranslate"><span class="pre">recover</span></code> option:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cchost
+--enclave-file /path/to/enclave_library
+--enclave-type debug
+--node-address node_ip:node_port
+--rpc-address rpc_ip:rpc_port
+--public-rpc-address public_rpc_ip:public_rpc_port
+--ledger-file /path/to/ledger/to/recover
+--node-cert-file /path/to/node_certificate
+--quote-file /path/to/quote
+recover
+--network-cert-file /path/to/network_certificate
+</pre></div>
+</div>
+<p>Each node will then immediately restore the public entries of its ledger (<code class="docutils literal notranslate"><span class="pre">--ledger-file</span></code>). Because deserialising the public entries present in the ledger may take some time, operators can query the progress of the public recovery by running the <code class="docutils literal notranslate"><span class="pre">getSignedIndex</span></code> JSON-RPC which returns the version of the last signed recovered ledger entry. Once the public ledger is fully recovered, the recovered node automatically becomes part of the public network, allowing other nodes to join the network.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If more than one node were started in <code class="docutils literal notranslate"><span class="pre">recover</span></code> mode, the node with the highest signed index (as per the response to the <code class="docutils literal notranslate"><span class="pre">getSignedIndex</span></code> JSON-RPC) should be preferred to start the new network. Other nodes should be shutdown and be restarted with the <code class="docutils literal notranslate"><span class="pre">join</span></code> option.</p>
+</div>
+<p>Similarly to the normal join protocol (see <a class="reference internal" href="start_network.html#adding-a-new-node-to-the-network"><span class="std std-ref">Adding a New Node to the Network</span></a>), other nodes are then able to join the network.</p>
+
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <script>mermaid.initialize({startOnLoad:true});</script><div class="mermaid">
+            sequenceDiagram
+    participant Operators
+    participant Node 2
+    participant Node 3
+
+    Operators-&gt;&gt;+Node 2: cchost --rpc-address=ip2:port2 --ledger-file=ledger0 recover
+    Node 2--&gt;&gt;Operators: Network Certificate
+    Note over Node 2: Reading Public Ledger...
+
+    Operators-&gt;&gt;+Node 2: getSignedIndex
+    Node 2--&gt;&gt;Operators: {&quot;signed_index&quot;: 50, &quot;state&quot;: &quot;readingPublicLedger&quot;}
+    Note over Node 2: Finished Reading Public Ledger, now Part of Public Network
+    Operators-&gt;&gt;Node 2: getSignedIndex
+    Node 2--&gt;&gt;Operators: {&quot;signed_index&quot;: 243, &quot;state&quot;: &quot;partOfPublicNetwork&quot;}
+
+    Note over Operators, Node 2: Operators select Node 2 to start the new network
+
+    Operators-&gt;&gt;+Node 3: cchost join --network-cert-file=Network Certificate --target-rpc-address=ip2:port2
+    Node 3-&gt;&gt;+Node 2: Join network (over TLS)
+    Node 2--&gt;&gt;Node 3: Network Secrets (over TLS)
+
+    Note over Node 3: Part of Public Network
+        </div><p>Once operators have established a recovered public network, the existing members of the consortium <a class="reference internal" href="../members/common_member_operations.html#accepting-recovery"><span class="std std-ref">must vote to accept the recovery of the network</span></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>After recovery, the identity of the network has changed. The new network certificate <code class="docutils literal notranslate"><span class="pre">networkcert.pem</span></code> must be distributed to all existing and new users.</p>
+</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="crash"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>When using Raft as consensus algorithm, CCF tolerates up to <cite>N/2 - 1</cite> crashed nodes (where <cite>N</cite> is the number of nodes constituting the network) before having to perform catastrophic recovery. For example, in a 5-node network, no more than 2 nodes are allowed to fail.</p>
+</dd>
+<dt class="label" id="sealing"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><a class="reference external" href="https://software.intel.com/en-us/blogs/2016/05/04/introduction-to-intel-sgx-sealing">Intel SGX Sealing</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="node_output.html" class="btn btn-neutral float-right" title="Node Output" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="start_network.html" class="btn btn-neutral float-left" title="Starting a New Network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

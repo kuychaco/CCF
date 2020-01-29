@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Client &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RPC API" href="rpc_api.html" />
+    <link rel="prev" title="Issuing Commands" href="issue_commands.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using CCF Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="deploy_app.html">Deploying an Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_commands.html">Issuing Commands</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Client</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#c-client">C++ Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-client">Python Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#http">HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rpc_api.html">RPC API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Using CCF Applications</a> &raquo;</li>
+        
+      <li>Client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/users/client.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="client">
+<h1>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h1>
+<p>CCF provides two client implementations (C++ and Python).</p>
+<div class="section" id="c-client">
+<h2>C++ Client<a class="headerlink" href="#c-client" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv416JsonRpcTlsClient">
+<span id="_CPPv316JsonRpcTlsClient"></span><span id="_CPPv216JsonRpcTlsClient"></span><span id="JsonRpcTlsClient"></span><span class="target" id="classJsonRpcTlsClient"></span><em class="property">class </em><code class="sig-name descname">JsonRpcTlsClient</code> : <em class="property">public</em> TlsClient<a class="headerlink" href="#_CPPv416JsonRpcTlsClient" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by HttpRpcTlsClient, <a class="reference internal" href="#classSigJsonRpcTlsClient"><span class="std std-ref">SigJsonRpcTlsClient</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv4N16JsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE">
+<span id="_CPPv3N16JsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE"></span><span id="_CPPv2N16JsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE"></span><span id="JsonRpcTlsClient::gen_rpc__ssCR.nlohmann::jsonCR"></span><span class="target" id="classJsonRpcTlsClient_1ad4045209c463907dc34a32d7b553a9cb"></span><em class="property">virtual</em> PreparedRpc <code class="sig-name descname">gen_rpc</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>method</em>, <em class="property">const</em> nlohmann::json &amp;<em>params</em> = nlohmann::json::array()<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16JsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Generate and serialize transaction</p>
+<p>This is useful when preparing transactions ahead of time for later sending.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>serialized transaction </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code>: Method name </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code>: Method parameters</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N16JsonRpcTlsClient4callERKNSt6stringERKN8nlohmann4jsonE">
+<span id="_CPPv3N16JsonRpcTlsClient4callERKNSt6stringERKN8nlohmann4jsonE"></span><span id="_CPPv2N16JsonRpcTlsClient4callERKNSt6stringERKN8nlohmann4jsonE"></span><span id="JsonRpcTlsClient::call__ssCR.nlohmann::jsonCR"></span><span class="target" id="classJsonRpcTlsClient_1ac2d292ad24a3fa527fadd7fb1a875ab2"></span>std::vector&lt;uint8_t&gt; <code class="sig-name descname">call</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>method</em>, <em class="property">const</em> nlohmann::json &amp;<em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16JsonRpcTlsClient4callERKNSt6stringERKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Call method with parameters</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>serialized response, can be parsed with nlohmann::json::from_msgpack </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code>: Method name </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code>: Parameters to the method</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv4N16JsonRpcTlsClient4callERKNSt6stringE">
+<span id="_CPPv3N16JsonRpcTlsClient4callERKNSt6stringE"></span><span id="_CPPv2N16JsonRpcTlsClient4callERKNSt6stringE"></span><span id="JsonRpcTlsClient::call__ssCR"></span><span class="target" id="classJsonRpcTlsClient_1a3ef3c53ff237bbdcc5f6a56f68c3fb61"></span>std::vector&lt;uint8_t&gt; <code class="sig-name descname">call</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16JsonRpcTlsClient4callERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Call method</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>serialized response, can be parsed with nlohmann::json::from_msgpack </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code>: Method name</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Alternatively, the <code class="docutils literal notranslate"><span class="pre">SigJsonRpcTlsClient</span></code> can be used to issue signed requests (useful for governance).</p>
+<dl class="class">
+<dt id="_CPPv419SigJsonRpcTlsClient">
+<span id="_CPPv319SigJsonRpcTlsClient"></span><span id="_CPPv219SigJsonRpcTlsClient"></span><span id="SigJsonRpcTlsClient"></span><span class="target" id="classSigJsonRpcTlsClient"></span><em class="property">class </em><code class="sig-name descname">SigJsonRpcTlsClient</code> : <em class="property">public</em> <a class="reference internal" href="#_CPPv416JsonRpcTlsClient" title="JsonRpcTlsClient">JsonRpcTlsClient</a><a class="headerlink" href="#_CPPv419SigJsonRpcTlsClient" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv4N19SigJsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE">
+<span id="_CPPv3N19SigJsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE"></span><span id="_CPPv2N19SigJsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE"></span><span id="SigJsonRpcTlsClient::gen_rpc__ssCR.nlohmann::jsonCR"></span><span class="target" id="classSigJsonRpcTlsClient_1a55d3d9aca86f53d67732bd4770128ca1"></span>PreparedRpc <code class="sig-name descname">gen_rpc</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>method</em>, <em class="property">const</em> nlohmann::json &amp;<em>params</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SigJsonRpcTlsClient7gen_rpcERKNSt6stringERKN8nlohmann4jsonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Generate sign and serialize transaction</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>signed serialized transaction </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span></code>: Method name </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">params</span></code>: Method parameters</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="python-client">
+<h2>Python Client<a class="headerlink" href="#python-client" title="Permalink to this headline">¶</a></h2>
+<p>Available as part of CCF Python infra: <a class="reference external" href="https://github.com/microsoft/CCF/blob/master/tests/infra/clients.py">https://github.com/microsoft/CCF/blob/master/tests/infra/clients.py</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Checker</span></code> class in <a class="reference external" href="https://github.com/microsoft/CCF/blob/master/tests/infra/ccf.py">ccf.py</a> can be used as a wrapper to wait for requests to be committed.</p>
+</div>
+<div class="section" id="http">
+<h2>HTTP<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h2>
+<p>HTTP support is now available experimentally in CCF. To enable it, follow the standard build procedure, and passing <cite>-DHTTP=ON</cite> to cmake.</p>
+<p>Testcases will automatically switch to using the appropriate clients.
+The CCF Python infra client can be used without any modifications other than exporting the <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> environment variable.
+By default, the Python infra uses <a class="reference external" href="https://realpython.com/python-requests/">requests</a>, but exporting the <code class="docutils literal notranslate"><span class="pre">CURL_CLIENT</span></code> environment variable will switch to a <code class="docutils literal notranslate"><span class="pre">curl</span></code>-based client instead.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">start_test_network.sh</span></code> script documented in <a class="reference internal" href="../quickstart/index.html#quickstart"><span class="std std-ref">Quickstart</span></a> defaults to using <code class="docutils literal notranslate"><span class="pre">curl</span></code>.
+A simple <code class="docutils literal notranslate"><span class="pre">scurl.sh</span></code> wrapper script is automatically generated under <code class="docutils literal notranslate"><span class="pre">build/</span></code>, and allows sending signed requests to CCF.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rpc_api.html" class="btn btn-neutral float-right" title="RPC API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="issue_commands.html" class="btn btn-neutral float-left" title="Issuing Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

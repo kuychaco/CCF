@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Issuing Commands &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Client" href="client.html" />
+    <link rel="prev" title="Deploying an Application" href="deploy_app.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using CCF Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="deploy_app.html">Deploying an Application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Issuing Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#checking-for-commit">Checking for Commit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transaction-receipts">Transaction receipts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpc_api.html">RPC API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Using CCF Applications</a> &raquo;</li>
+        
+      <li>Issuing Commands</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/users/issue_commands.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="issuing-commands">
+<h1>Issuing Commands<a class="headerlink" href="#issuing-commands" title="Permalink to this headline">¶</a></h1>
+<p>Clients communicate with CCF using framed <a class="reference internal" href="../glossary.html#term-json-rpc"><span class="xref std std-term">JSON-RPC</span></a> over <a class="reference internal" href="../glossary.html#term-tls"><span class="xref std std-term">TLS</span></a>. The <code class="docutils literal notranslate"><span class="pre">method</span></code> must be prefixed with the name of the target frontend (<code class="docutils literal notranslate"><span class="pre">&quot;users&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;members&quot;</span></code>), separated from the intended <code class="docutils literal notranslate"><span class="pre">method</span></code> with a single <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p>
+<p>Users can issue business transactions to CCF using the <code class="docutils literal notranslate"><span class="pre">client</span></code> command-line utility built with CCF. For example, to record a message at a specific id with the <a class="reference internal" href="../developers/example.html#example-application"><span class="std std-ref">Example Application</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat request.json
+<span class="o">{</span>
+  <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+  <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;users/LOG_record&quot;</span>,
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;params&quot;</span>:
+  <span class="o">{</span>
+    <span class="s2">&quot;id&quot;</span>: <span class="m">42</span>,
+    <span class="s2">&quot;msg&quot;</span>: <span class="s2">&quot;Hello There&quot;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+$ client --pretty-print --rpc-address node_rpc_ip:node_rpc_port --ca networkcert.pem userrpc --req @request.json --cert user_cert.pem --pk user_privk.pem
+Sending RPC to node_rpc_ip:node_rpc_port
+Doing user RPC:
+<span class="o">{</span>
+  <span class="s2">&quot;commit&quot;</span>: <span class="m">30</span>,
+  <span class="s2">&quot;global_commit&quot;</span>: <span class="m">29</span>,
+  <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+  <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+  <span class="s2">&quot;result&quot;</span>: true,
+  <span class="s2">&quot;term&quot;</span>: <span class="m">2</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>The JSON-RPC response is written to <code class="docutils literal notranslate"><span class="pre">stdout</span></code> when the request has been executed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;id&quot;</span></code> indicates that the response is for request id <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;result&quot;:</span> <span class="pre">true</span></code> indicates that the request was executed successfully</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;commit&quot;</span></code> is the unique version at which the request was executed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;global_commit&quot;</span></code> is the latest version agreed on by the network and forever committed to the ledger, at the time the request was executed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;term&quot;</span></code> indicates the consensus term at which the request was executed</p></li>
+</ul>
+<div class="section" id="checking-for-commit">
+<h2>Checking for Commit<a class="headerlink" href="#checking-for-commit" title="Permalink to this headline">¶</a></h2>
+<p>Because of the decentralised nature of CCF, a request is committed to the ledger only once a number of nodes have agreed on that request.</p>
+<p>To guarantee that their request is successfully committed to the ledger, a user needs to issue a <code class="docutils literal notranslate"><span class="pre">getCommit</span></code> request, specifying the <code class="docutils literal notranslate"><span class="pre">commit</span></code> version received in the JSON-RPC response. If CCF returns a <code class="docutils literal notranslate"><span class="pre">global_commit</span></code> greater than the <code class="docutils literal notranslate"><span class="pre">commit</span></code> version at which the <code class="docutils literal notranslate"><span class="pre">LOG_record</span></code> request was issued <cite>and</cite> that the result <code class="docutils literal notranslate"><span class="pre">commit</span></code> is in the same <code class="docutils literal notranslate"><span class="pre">term</span></code>, then the request was committed to the ledger.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ cat get_commit.json
+ <span class="o">{</span>
+   <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+   <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;users/getCommit&quot;</span>,
+   <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+   <span class="s2">&quot;params&quot;</span>:
+   <span class="o">{</span>
+     <span class="s2">&quot;commit&quot;</span>: <span class="m">30</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+
+ $ client --pretty-print --rpc-address node_rpc_ip:node_rpc_port --ca networkcert.pem userrpc --req @get_commit.json --cert user_cert.pem --pk user_privk.pem
+ Sending RPC to node_rpc_ip:node_rpc_port
+ Doing user RPC:
+ <span class="o">{</span>
+   <span class="s2">&quot;commit&quot;</span>: <span class="m">31</span>,
+   <span class="s2">&quot;global_commit&quot;</span>: <span class="m">31</span>,
+   <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+   <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+   <span class="s2">&quot;result&quot;</span>: <span class="o">{</span>
+     <span class="s2">&quot;commit&quot;</span>: <span class="m">30</span>,
+     <span class="s2">&quot;term&quot;</span>: <span class="m">2</span>
+   <span class="o">}</span>,
+   <span class="s2">&quot;term&quot;</span>: <span class="m">2</span>
+ <span class="o">}</span>
+</pre></div>
+</div>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">result</span></code> field indicates that the request was executed at <code class="docutils literal notranslate"><span class="pre">30</span></code> (<code class="docutils literal notranslate"><span class="pre">commit</span></code>) was in term <code class="docutils literal notranslate"><span class="pre">2</span></code>, the same term that the <code class="docutils literal notranslate"><span class="pre">LOG_record</span></code>. Moreover, the <code class="docutils literal notranslate"><span class="pre">global_commit</span></code> (<code class="docutils literal notranslate"><span class="pre">31</span></code>) is now greater than the <code class="docutils literal notranslate"><span class="pre">commit</span></code> version. The <code class="docutils literal notranslate"><span class="pre">LOG_record</span></code> request issued earlier was successfully committed to the ledger.</p>
+</div>
+<div class="section" id="transaction-receipts">
+<h2>Transaction receipts<a class="headerlink" href="#transaction-receipts" title="Permalink to this headline">¶</a></h2>
+<p>Once a transaction has been committed, it is possible to get a receipt for it. That receipt can later be checked against either a CCF service, or offline against the ledger, to prove that the transaction did happen at a particular commit.</p>
+<p>To obtain a receipt, a user needs to issue a <code class="docutils literal notranslate"><span class="pre">getReceipt</span></code> RPC for a particular commit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ cat get_receipt.json
+ <span class="o">{</span>
+   <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+   <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;users/getReceipt&quot;</span>,
+   <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+   <span class="s2">&quot;params&quot;</span>:
+   <span class="o">{</span>
+     <span class="s2">&quot;commit&quot;</span>: <span class="m">30</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+
+ $ client --pretty-print --rpc-address node_rpc_ip:node_rpc_port --ca networkcert.pem userrpc --req @get_receipt.json --cert user_cert.pem --pk user_privk.pem
+ Sending RPC to node_rpc_ip:node_rpc_port
+ Doing user RPC:
+ <span class="o">{</span>
+   <span class="s2">&quot;commit&quot;</span>: <span class="m">31</span>,
+   <span class="s2">&quot;global_commit&quot;</span>: <span class="m">31</span>,
+   <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+   <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+   <span class="s2">&quot;result&quot;</span>: <span class="o">{</span>
+     <span class="s2">&quot;receipt&quot;</span>: <span class="o">[</span> ... <span class="o">]</span>,
+   <span class="o">}</span>,
+   <span class="s2">&quot;term&quot;</span>: <span class="m">2</span>
+ <span class="o">}</span>
+</pre></div>
+</div>
+<p>Receipts can be verified with the <code class="docutils literal notranslate"><span class="pre">verifyReceipt</span></code> RPC:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span> $ cat get_receipt.json
+ <span class="o">{</span>
+   <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+   <span class="s2">&quot;method&quot;</span>: <span class="s2">&quot;users/verifyReceipt&quot;</span>,
+   <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+   <span class="s2">&quot;params&quot;</span>:
+   <span class="o">{</span>
+     <span class="s2">&quot;receipt&quot;</span>: <span class="o">[</span> ... <span class="o">]</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+
+ $ client --pretty-print --rpc-address node_rpc_ip:node_rpc_port --ca networkcert.pem userrpc --req @get_receipt.json --cert user_cert.pem --pk user_privk.pem
+ Sending RPC to node_rpc_ip:node_rpc_port
+ Doing user RPC:
+ <span class="o">{</span>
+   <span class="s2">&quot;commit&quot;</span>: <span class="m">31</span>,
+   <span class="s2">&quot;global_commit&quot;</span>: <span class="m">31</span>,
+   <span class="s2">&quot;id&quot;</span>: <span class="m">0</span>,
+   <span class="s2">&quot;jsonrpc&quot;</span>: <span class="s2">&quot;2.0&quot;</span>,
+   <span class="s2">&quot;result&quot;</span>: <span class="o">{</span>
+     <span class="s2">&quot;valid&quot;</span>: true,
+   <span class="o">}</span>,
+   <span class="s2">&quot;term&quot;</span>: <span class="m">2</span>
+ <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="client.html" class="btn btn-neutral float-right" title="Client" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="deploy_app.html" class="btn btn-neutral float-left" title="Deploying an Application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

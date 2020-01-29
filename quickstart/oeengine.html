@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OE Engine Walkthrough &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building CCF" href="build.html" />
+    <link rel="prev" title="Environment Setup" href="requirements.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Quickstart</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="requirements.html">Environment Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OE Engine Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build.html">Building CCF</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Quickstart</a> &raquo;</li>
+        
+      <li>OE Engine Walkthrough</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/quickstart/oeengine.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="oe-engine-walkthrough">
+<h1>OE Engine Walkthrough<a class="headerlink" href="#oe-engine-walkthrough" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="../glossary.html#term-open-enclave-engine"><span class="xref std std-term">Open Enclave Engine</span></a> (OE Engine) offers detailed <a class="reference external" href="https://github.com/Microsoft/oe-engine/blob/master/docs/deployment.md">deployment instructions</a>, but this is a very condensed summary to get a CCF-ready VM up and running in 5 minutes. You can either execute these steps on a machine with the <a class="reference external" href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">Azure CLI</a> installed, or use <a class="reference external" href="https://docs.microsoft.com/en-us/azure/cloud-shell/overview">Azure Cloud Shell</a> (installed by the <code class="docutils literal notranslate"><span class="pre">pre_make_vm.sh</span></code> script).</p>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference external" href="https://github.com/Microsoft/oe-engine/releases">oe-engine binary</a> for your platform.</p></li>
+<li><p>Create a definition file as <code class="docutils literal notranslate"><span class="pre">vm.json</span></code>:</p></li>
+</ol>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;vmProfiles&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;ccf-test&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;osType&quot;</span><span class="p">:</span> <span class="s2">&quot;Linux&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;vmSize&quot;</span><span class="p">:</span> <span class="s2">&quot;Standard_DC2s&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;ports&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">25000</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;linuxProfile&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;adminUsername&quot;</span><span class="p">:</span> <span class="s2">&quot;ccf&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Generate Azure Resource Manager deployment templates. This assumes that you are using an <a class="reference external" href="https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys">SSH key</a> to authenticate, but it is also possible to use a password with <a class="reference external" href="https://github.com/Microsoft/oe-engine/blob/master/docs/examples/oe-lnx-passwd.json">adminPassword</a>.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ oe-engine generate --api-model vm.json --ssh-public-key ~/.ssh/id_rsa.pub --output-directory vm
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Log in to Azure, set a default subscription and create a resource group</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ az login
+$ az account <span class="nb">set</span> --subscription &lt;subscription id&gt;
+$ az group create -l eastus -n &lt;resource group name&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Deploy the VM</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ az group deployment create --name ccf-deploy <span class="se">\</span>
+                           --resource-group &lt;resource group name&gt; <span class="se">\</span>
+                           --template-file vm/azuredeploy.json <span class="se">\</span>
+                           --parameters @vm/azuredeploy.parameters.json
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="build.html" class="btn btn-neutral float-right" title="Building CCF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="requirements.html" class="btn btn-neutral float-left" title="Environment Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

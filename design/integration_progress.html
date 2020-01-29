@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PBFT integration &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Design" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Design</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PBFT integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#starting-up-a-network">Starting up a network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proposed-integration-layout">Proposed integration layout</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Design</a> &raquo;</li>
+        
+      <li>PBFT integration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/design/integration_progress.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pbft-integration">
+<h1>PBFT integration<a class="headerlink" href="#pbft-integration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="starting-up-a-network">
+<h2>Starting up a network<a class="headerlink" href="#starting-up-a-network" title="Permalink to this headline">¶</a></h2>
+<p>Proposed diagram for creating a new network when running with CCF</p>
+
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <script>mermaid.initialize({startOnLoad:true});</script><div class="mermaid">
+            sequenceDiagram
+    participant Member Consortium
+    participant Node 0
+    participant Node 1
+
+    Node 0 -&gt;&gt;Node 0 : node start - signed by Node 0
+    Note over Node 0 : node start txs [add members, add nodes (0), governance, ...]
+
+    Node 1 -&gt;&gt;Node 0 : JoinRPC - signed by Node 1
+    Node 0 -&gt;&gt;Node 0 : add Node 1 to nodes table
+    Node 0 -&gt;&gt;Node 1 : OK [respond with node 1 id and node 0 id]
+    Node 1 -&gt;&gt; Node 1 : setup PBFT for Node 1
+    Node 1 -&gt;&gt; Node 1 : add Node 0 to PBFT configuration
+
+    Note over Node 0 : ... more nodes can join in the mean time ...
+
+    Member Consortium-&gt;&gt;Node 0 : OPEN network - signed by member(s)
+    Node 0 -&gt;&gt;Node 0 : Set f &gt; 0
+    loop Node Catchup
+        Node 0 -&gt;&gt;Node 1 : replay ledger to Node 1
+        Node 1 -&gt;&gt; Node 0 : ask for previous state
+        Node 0 -&gt;&gt; Node 1: replay ledger to Node 1
+        Node 1 -&gt;&gt;Node 1 : replay ledger transactions - hooks triggered that set up the rest of the PBFT replicas
+    end
+        </div><p><cite>Primary</cite></p>
+
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <div class="mermaid">
+            sequenceDiagram
+    participant Client
+    participant LedgerEnclave(RB)
+    participant Frontend
+    participant KV
+    participant History
+    participant Client Proxy
+    participant Replica
+    participant Backup Replica
+
+    Client-&gt;&gt;Frontend: JSON-RPC Request
+    Frontend-&gt;&gt;History: add_request(RequestID, actor, caller_id, JSON-RPC Request)
+
+
+    History-&gt;&gt;Client Proxy: ON_REQUEST callback(RequestID, actor, caller_id, JSON-RPC Request)
+
+    Client Proxy-&gt;&gt;Client Proxy: Wrap JSON-RPC Request in PBFT command
+
+    Client Proxy-&gt;&gt;Replica: send(PBFT command, All_replicas)
+    Replica-&gt;&gt;Backup Replica: send(PBFT command)
+    Replica--&gt;&gt;Client Proxy:_
+
+
+    Client Proxy-&gt;&gt;Replica: handle(Request [PBFT command])
+    Replica-&gt;&gt;Replica: execute_tentative: starts
+    Replica-&gt;&gt;Replica: exec_command: starts
+
+    Replica-&gt;&gt;Frontend: process_pbft(PBFT command [Wrapped JSON-RPC Request])
+
+    Frontend-&gt;&gt;History: register ON_RESULT callback
+
+    Frontend-&gt;&gt;Frontend: process_json()
+
+    Frontend-&gt;&gt;KV: COMMIT TX
+    KV-&gt;&gt;History: add_result(RequestID, version, merkle_root)
+
+    History-&gt;&gt;History: ON_RESULT callback: populated merkle_root reference that was passed by process_pbft when callback was registered
+
+    History--&gt;&gt;KV:_
+    KV--&gt;&gt;Frontend:_
+
+    Frontend-&gt;&gt;Replica: return from process_pbft(): ProcessPbftResult{result, merkle_root}
+    Replica-&gt;&gt;Replica: cp merkle_root into exec_command's Byz_info
+    Replica-&gt;&gt;Replica: exec_command: returns
+    Replica-&gt;&gt;Replica: execute_tentative: returns
+
+    Replica-&gt;&gt;Replica: put merkle_root in pre prepare msg
+    Replica-&gt;&gt;Replica: write pre prepare and requests to ledger
+    Replica-&gt;&gt;LedgerEnclave(RB): ON_APPEND_LEDGER_ENTRY Callback: put_entry()
+    LedgerEnclave(RB)--&gt;&gt;Replica:_
+
+    Replica-&gt;&gt;Replica Backup: send(pre prepare, All_replicas)
+
+    Replica--&gt;&gt;Client Proxy: return from handle()
+    Client Proxy--&gt;&gt;History: return from ON_REQUEST callback()
+    History--&gt;&gt;Frontend: return from add_request()
+    Frontend--&gt;&gt;Client: return from process()
+        </div><p><cite>Backup/Replica</cite></p>
+<p>[handling a prepare is the same if the Replica is Primary]</p>
+
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <div class="mermaid">
+            sequenceDiagram
+    participant Nodestate
+    participant LedgerEnclave(RB)
+    participant Frontend
+    participant Client Proxy
+    participant Replica
+    participant All Other Replicas
+
+    Nodestate-&gt;&gt;Replica: receive_message()
+
+    Replica--&gt;&gt;Replica: receive_process_one_msg()
+    Replica-&gt;&gt;Replica: handle(Request)
+    Replica-&gt;&gt;Replica: store request
+    Replica-&gt;&gt;Replica: forward request to primary
+
+    Nodestate-&gt;&gt;Replica: receive_message()
+    Replica--&gt;&gt;Replica: receive_process_one_msg()
+    Replica-&gt;&gt;Replica: handle(Pre_prepare)
+    Replica-&gt;&gt;Replica: write pre prepare to ledger [as shown for primary]
+    Replica--&gt;&gt;LedgerEnclave(RB): [as shown above]
+
+    Replica-&gt;&gt;Replica: execute_tentative [as shown for primary]
+    Replica-&gt;&gt;Replica: exec_command [as shown for primary]
+
+    Replica-&gt;&gt;Replica: check that merkle_root matches
+    Note over Replica: check that merkle_root returned from exec_command (populated by history after exec_command calls out to frontend) matches the one from the pre_prepare msg
+    Replica-&gt;&gt;All Other Replicas: [if not ok just return] if ok send(Prepare with pp's digest, All_replicas)
+
+    Nodestate-&gt;&gt;Replica: receive_message()
+    Replica--&gt;&gt;Replica: receive_process_one_msg()
+
+    Replica-&gt;&gt;Replica: handle(Prepare)
+    Replica-&gt;&gt;Replica: [if prepare cert is complete] write prepare cert info to ledger
+    Note over Replica: writing prepare includes writing a header [seqno, num of pp proofs] and writing the proofs [all pp proofs for each prepare that I have in this certifcate]
+    Replica--&gt;&gt;LedgerEnclave(RB): write header
+    Replica--&gt;&gt;LedgerEnclave(RB): write proofs
+
+    Replica-&gt;&gt; All Other Replicas: [if prepare cert complete] send(commit, All_replicas)
+        </div></div>
+<div class="section" id="proposed-integration-layout">
+<h2>Proposed integration layout<a class="headerlink" href="#proposed-integration-layout" title="Permalink to this headline">¶</a></h2>
+<p><cite>Primary</cite></p>
+
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <div class="mermaid">
+            graph TD
+    Client-- Command --&gt;Consensus
+    Consensus-- Batch of Commands --&gt;Dispatcher
+    Dispatcher-- SubBatch of Commands --&gt;FrontEnd1
+    Dispatcher-- SubBatch of Commands --&gt;FrontEnd2
+    FrontEnd1-- Tx --&gt;KV
+    FrontEnd2-- Tx --&gt;KV
+    KV-- Tx Digest --&gt;History
+    History-- Merkle Tree Root --&gt;KV
+    KV-- Ordered Batch of Commands, Responses with Tree Root--&gt;Consensus
+        </div>
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <div class="mermaid">
+            sequenceDiagram
+    participant Client
+    participant Consensus
+    participant Dispatcher
+    participant FrontEnd1
+    participant FrontEnd2
+    participant KV
+    participant History
+    Client-&gt;&gt;Consensus: Command1
+    Client-&gt;&gt;Consensus: Command2
+    Client-&gt;&gt;Consensus: Command2
+    Consensus-&gt;&gt;Dispatcher: Batch of Command1,2,3
+    Dispatcher-&gt;&gt;FrontEnd1: Batch of Command1,2
+    Dispatcher-&gt;&gt;FrontEnd2: Batch of Command3
+    FrontEnd1-&gt;&gt;KV: Tx1, Tx2
+    KV-&gt;&gt;History: Digest1
+    KV-&gt;&gt;History: Digest2
+    FrontEnd2-&gt;&gt;KV: Tx3
+    KV-&gt;&gt;History: Digest3
+    History-&gt;&gt;KV: Root of Tree
+    KV-&gt;&gt;Consensus: Ordered Batch of Command 1,2 and Command3 with Root of Tree and Responses
+        </div><p><cite>Replica</cite></p>
+
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <div class="mermaid">
+            graph TD
+    Primary-- Ordered Batch of Commands with Tree Root --&gt;Consensus
+    Consensus-- SubBatch of Commands --&gt;FrontEnd1
+    Consensus-- SubBatch of Commands --&gt;FrontEnd2
+    FrontEnd1-- Tx --&gt;KV
+    FrontEnd2-- Tx --&gt;KV
+    KV-- Tx Digest --&gt;History
+    History-- Merkle Tree Root --&gt;KV
+    KV-- Tree Root --&gt;Consensus
+    Consensus-- Confirm or Rollback --&gt; KV
+        </div>
+            <style>
+            /* mermaid issue 527 workaround */
+            .section {
+                opacity: 1.0 !important;
+            }
+            </style>
+            <div class="mermaid">
+            sequenceDiagram
+    participant Primary
+    participant Consensus
+    participant Dispatcher
+    participant FrontEnd1
+    participant FrontEnd2
+    participant KV
+    participant History
+    Primary-&gt;&gt;Consensus: Ordered Batch of Command 1,2 and Command3 with Root of Tree
+    Consensus-&gt;&gt;Dispatcher: Ordered Batch of Command 1,2 and Command3
+    Dispatcher-&gt;&gt;FrontEnd1: Batch of Command1,2
+    Dispatcher-&gt;&gt;FrontEnd2: Batch of Command3
+    FrontEnd1-&gt;&gt;KV: Tx1, Tx2
+    KV-&gt;&gt;History: Digest1
+    KV-&gt;&gt;History: Digest2
+    FrontEnd2-&gt;&gt;KV: Tx3
+    KV-&gt;&gt;History: Digest3
+    History-&gt;&gt;KV: Root of Tree
+    KV-&gt;&gt;Consensus: Root of Tree
+    Consensus-&gt;&gt;KV: Confirm or Rollback
+        </div></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

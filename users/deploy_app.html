@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Deploying an Application &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Issuing Commands" href="issue_commands.html" />
+    <link rel="prev" title="Using CCF Applications" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers/index.html">Writing CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using CCF Applications</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Deploying an Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_commands.html">Issuing Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rpc_api.html">RPC API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Using CCF Applications</a> &raquo;</li>
+        
+      <li>Deploying an Application</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/users/deploy_app.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deploying-an-application">
+<h1>Deploying an Application<a class="headerlink" href="#deploying-an-application" title="Permalink to this headline">¶</a></h1>
+<p>The quickest way to deploy a CCF application is to use the <a class="reference external" href="https://github.com/microsoft/CCF/blob/master/start_test_network.sh">start_test_network.sh</a> test script, specifying the <a class="reference internal" href="../developers/index.html#writing-ccf-applications"><span class="std std-ref">enclave image</span></a> to run.</p>
+<p>The script creates a new test CCF network composed of 3 nodes running locally. All the governance requests required to open the network to users are automatically issued.</p>
+<p>For example, deploying the <code class="docutils literal notranslate"><span class="pre">liblogging</span></code> example application:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> CCF/build
+$ ../start_test_network.sh ./liblogging.enclave.so.signed
+Setting up Python environment...
+Python environment successfully setup
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:47:41.562<span class="o">]</span> Starting <span class="m">3</span> CCF nodes...
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> Started CCF network with the following nodes:
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span>   Node <span class="o">[</span> <span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="m">127</span>.177.10.108:37765
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span>   Node <span class="o">[</span> <span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="m">127</span>.169.74.37:58343
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span>   Node <span class="o">[</span> <span class="m">2</span><span class="o">]</span> <span class="o">=</span> <span class="m">127</span>.131.108.179:50532
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> You can now issue business transactions to the ./liblogging.enclave.so.signed application.
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> See https://microsoft.github.io/CCF/users/issue_commands.html <span class="k">for</span> more information.
+<span class="o">[</span><span class="m">2019</span>-10-29 <span class="m">14</span>:48:12.138<span class="o">]</span> Press Ctrl+C to shutdown the network.
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use CCF <cite>virtual</cite> mode, the same command can be run with <code class="docutils literal notranslate"><span class="pre">TEST_ENCLAVE=virtual</span></code> set as environment variable and the virtual version of the enclave application passed to the script. For example <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">TEST_ENCLAVE=virtual</span> <span class="pre">../start_test_network.sh</span> <span class="pre">./liblogging.virtual.so</span></code>.</p>
+</div>
+<p>The log files (<code class="docutils literal notranslate"><span class="pre">out</span></code> and <code class="docutils literal notranslate"><span class="pre">err</span></code>) and ledger (<code class="docutils literal notranslate"><span class="pre">&lt;node_id&gt;.ledger</span></code>) for each CCF node can be found under <code class="docutils literal notranslate"><span class="pre">CCF/build/workspace/test_network_&lt;node_id&gt;</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The first time the command is run, a Python virtual environment will be created. This may take a few seconds. It will not be run the next time the <code class="docutils literal notranslate"><span class="pre">start_test_network.sh</span></code> script is started.</p>
+</div>
+<p>In a different terminal, using the local IP address and port of the CCF nodes displayed by the command (e.g. <code class="docutils literal notranslate"><span class="pre">127.177.10.108:37765</span></code> for node <code class="docutils literal notranslate"><span class="pre">0</span></code>), it is then possible for users to <a class="reference internal" href="issue_commands.html#issuing-commands"><span class="std std-ref">issue business requests</span></a>.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="issue_commands.html" class="btn btn-neutral float-right" title="Issuing Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Using CCF Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

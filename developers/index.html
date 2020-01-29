@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Writing CCF Applications &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Example Application" href="example.html" />
+    <link rel="prev" title="Member RPC API" href="../members/member_rpc_api.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Writing CCF Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html">Build and Sign Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demo.html">End-to-end demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/index.html">Key-Value Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html">Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Cryptography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">Developer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Writing CCF Applications</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/developers/index.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="writing-ccf-applications">
+<h1>Writing CCF Applications<a class="headerlink" href="#writing-ccf-applications" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how CCF applications can be developed and deployed to a CCF network.</p>
+<p>Applications can be written in C++ or Lua (see <a class="reference internal" href="example.html#example-application"><span class="std std-ref">Example Application</span></a>). An application consists of a collection of endpoints that can be triggered by <a class="reference internal" href="../glossary.html#term-users"><span class="xref std std-term">users</span></a> using JSON-RPC. Each endpoint can define an <a class="reference internal" href="logging_cpp.html#api-schema"><span class="std std-ref">API Schema</span></a> to validate user requests.</p>
+<p>These endpoints mutate the state of a unique <a class="reference internal" href="kv/index.html#key-value-store"><span class="std std-ref">Key-Value Store</span></a> that represents the internal state of the application. Applications define a set of <code class="docutils literal notranslate"><span class="pre">Maps</span></code> (see <a class="reference internal" href="kv/kv_how_to.html#creating-a-map"><span class="std std-ref">Creating a Map</span></a>), mapping from a key to a value. When an application endpoint is triggered, the effects on the Store are committed atomically.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Notifications to be described.</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="example.html">Example Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="example.html#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="example.html#implementations">Implementations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="build_app.html">Build and Sign Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html#standalone-signing">Standalone Signing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html#running-the-application">Running the Application</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="demo.html">End-to-end demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kv/index.html">Key-Value Store</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kv/kv_how_to.html">Key-Value Store How-To</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/kv_serialisation.html">KV Serialisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/api.html">Key-Value Store API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ledger.html">Ledger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html#ledger-encryption">Ledger Encryption</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html#ledger-replication">Ledger Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html#reading-and-verifing-ledger">Reading and Verifing Ledger</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cryptography.html">Cryptography</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html#keys">Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html#algorithms-and-curves">Algorithms and Curves</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#micro-benchmarks">Micro-benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html#end-to-end-performance-tests">End-to-end performance tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#application-entry-point">Application Entry Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#application-handler">Application Handler</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="example.html" class="btn btn-neutral float-right" title="Example Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../members/member_rpc_api.html" class="btn btn-neutral float-left" title="Member RPC API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>End-to-end demo &mdash; CCF  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/mermaid@7.1.0/dist/mermaid.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Key-Value Store" href="kv/index.html" />
+    <link rel="prev" title="Build and Sign Application" href="build_app.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CCF
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts.html">CCF Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../members/index.html">Member Governance</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Writing CCF Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="example.html">Example Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_app.html">Build and Sign Application</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">End-to-end demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kv/index.html">Key-Value Store</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ledger.html">Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Cryptography</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html">Developer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operators/index.html">Operating a Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../users/index.html">Using CCF Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CCF</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Writing CCF Applications</a> &raquo;</li>
+        
+      <li>End-to-end demo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/Microsoft/CCF/blob/master/sphinx/source/developers/demo.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="end-to-end-demo">
+<h1>End-to-end demo<a class="headerlink" href="#end-to-end-demo" title="Permalink to this headline">¶</a></h1>
+<p>This document explains how the Python testing infrastructure is used to run a complete end-to-end test of CCF.</p>
+<p>The script <code class="docutils literal notranslate"><span class="pre">tests/e2e_scenarios.py</span></code> reads a test scenario from json. This json file can specify which app the network should run, how many nodes it should create, and the list of transactions to run. <code class="docutils literal notranslate"><span class="pre">tests/simple_logging_scenario.json</span></code> is an example scenario file showing the expected format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;localhost&quot;</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;liblogging&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;connections&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;LOG_record&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+            <span class="nt">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;expected_result&quot;</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;LOG_get&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">42</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;expected_result&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;on_backup&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nt">&quot;transactions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;LOG_record&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+            <span class="nt">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;expected_result&quot;</span><span class="p">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;LOG_get&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">42</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;expected_result&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To see how this is run in the main test suite, look at the <cite>Test command</cite> used by CTest:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> build
+$ ctest -VV -R end_to_end_scenario -N
+
+...
+<span class="m">42</span>: Test command: /usr/bin/unbuffer <span class="s2">&quot;python3&quot;</span> <span class="s2">&quot;/data/src/CCF/tests/e2e_scenarios.py&quot;</span> <span class="s2">&quot;-b&quot;</span> <span class="s2">&quot;.&quot;</span> <span class="s2">&quot;--label&quot;</span> <span class="s2">&quot;end_to_end_scenario&quot;</span> <span class="s2">&quot;-l&quot;</span> <span class="s2">&quot;info&quot;</span> <span class="s2">&quot;-g&quot;</span> <span class="s2">&quot;/data/src/CCF/src/runtime_config/gov.lua&quot;</span> <span class="s2">&quot;--scenario&quot;</span> <span class="s2">&quot;/data/src/CCF/tests/simple_logging_scenario.json&quot;</span>
+<span class="m">42</span>: Environment variables:
+<span class="m">42</span>:  <span class="nv">PYTHONPATH</span><span class="o">=</span>/data/src/CCF/tests
+</pre></div>
+</div>
+<p>To run manually with your own scenario:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> build
+$ ./tests.sh -N                           <span class="c1"># Creates Python venv</span>
+$ <span class="nb">source</span> env/bin/activate                 <span class="c1"># Activates venv</span>
+$ <span class="nb">export</span> <span class="nv">PYTHONPATH</span><span class="o">=</span>/data/src/CCF/tests   <span class="c1"># Makes Python test infra importable</span>
+$ python ../tests/e2e_scenarios.py --scenario path/to/scenario.json
+</pre></div>
+</div>
+<p>This first loads the scenario from the given json file, extracting setup fields:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">scenario</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+      <span class="n">scenario</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+  <span class="n">hosts</span> <span class="o">=</span> <span class="n">scenario</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;hosts&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;localhost&quot;</span><span class="p">])</span>
+  <span class="n">args</span><span class="o">.</span><span class="n">package</span> <span class="o">=</span> <span class="n">scenario</span><span class="p">[</span><span class="s2">&quot;package&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Given the above <code class="docutils literal notranslate"><span class="pre">scenario.json</span></code> this should create 2 nodes on the local machine running the <code class="docutils literal notranslate"><span class="pre">logging</span></code> example app. The script then creates the requested CCF network:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">with</span> <span class="n">infra</span><span class="o">.</span><span class="n">ccf</span><span class="o">.</span><span class="n">network</span><span class="p">(</span>
+      <span class="n">hosts</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">build_dir</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">debug_nodes</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">perf_nodes</span>
+  <span class="p">)</span> <span class="k">as</span> <span class="n">network</span><span class="p">:</span>
+      <span class="n">network</span><span class="o">.</span><span class="n">start_and_join</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Each transaction listed in the scenario is then sent to either the <cite>primary</cite> or a <cite>backup</cite> node. Any <code class="docutils literal notranslate"><span class="pre">Write</span></code> transactions (which modify the KV) must be processed by the <cite>primary</cite>. If a <code class="docutils literal notranslate"><span class="pre">Write</span></code> transaction is sent to a <cite>backup</cite> it will be forwarded to the <cite>primary</cite>.</p>
+<p>The response to each transaction is printed at the <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> logging level, and also compared against the expected result. For instance, given this transaction in the scenario file:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;users/LOG_record&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;params&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="nt">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Hello world&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;expected&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>There should be a corresponding entry in the Python output, similar to:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>| INFO     | infra.jsonrpc:request:192 - #0 users/LOG_record {&#39;id&#39;: 42, &#39;msg&#39;: &#39;Hello world&#39;}
+| DEBUG    | infra.jsonrpc:response:209 - #0 {&#39;id&#39;: 0, &#39;result&#39;: True, &#39;error&#39;: None, &#39;jsonrpc&#39;: &#39;2.0&#39;, &#39;commit&#39;: 5, &#39;term&#39;: 2, &#39;global_commit&#39;: 4}
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">e2e</span></code> test script takes several additional parameters, documented by passing <code class="docutils literal notranslate"><span class="pre">-h</span></code> on the command line. To debug a node it may be useful to increase the node’s verbosity by altering the <code class="docutils literal notranslate"><span class="pre">--log-level</span></code> option <a class="footnote-reference brackets" href="#log-location" id="id1">1</a>, or to attach a debugger to a node at launch with the <code class="docutils literal notranslate"><span class="pre">--debug-nodes</span></code> option. If passed the <code class="docutils literal notranslate"><span class="pre">--network-only</span></code> option the script will keep the network alive, rather than closing immediately after transactions have completed, allowing additional transactions to be sent manually.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="log-location"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The log location should be visible in the Python output. By default, node <code class="docutils literal notranslate"><span class="pre">N</span></code> will log to files <code class="docutils literal notranslate"><span class="pre">out</span></code> and <code class="docutils literal notranslate"><span class="pre">err</span></code> in <code class="docutils literal notranslate"><span class="pre">CCF/build/workspace/end_to_end_scenario_{N}</span></code></p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kv/index.html" class="btn btn-neutral float-right" title="Key-Value Store" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build_app.html" class="btn btn-neutral float-left" title="Build and Sign Application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Microsoft Research
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
