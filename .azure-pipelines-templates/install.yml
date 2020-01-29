@@ -3,6 +3,9 @@
   # ${{ if(ne(parameters.protocol, 'HTTP')) }}:
   #   suffix: '_${{ parameters.protocol }}'
 
+variables:
+  suffix: '_${{ parameters.protocol }}'
+
 steps:
 - script: |
     mkdir install
