@@ -133,4 +133,4 @@ jobs:
   - template: metrics_release.yml
     parameters:
       env: ${{ parameters.env.MetricsAndRelease }}
-      release: ${{ eq(parameters.perf_or_release, 'release') }}
+      perf_or_release: ${{ parameters.perf_or_release }}
