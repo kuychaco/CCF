@@ -1,3 +1,7 @@
+parameters:
+  default_protocol: 'HTTP' # Default protocol does
+
+
 steps:
 - script: |
     mkdir install
