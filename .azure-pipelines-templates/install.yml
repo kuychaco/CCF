@@ -2,6 +2,7 @@ parameters:
   default_protocol: 'HTTP' # Default protocol does
 
 
+
 steps:
 - script: |
     mkdir install
@@ -11,7 +12,7 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: $(Build.SourcesDirectory)/build/install # TODO: Install directory
+    rootFolderOrFile: $(Build.SourcesDirectory)/build/install
     archiveType: 'tar'
     tarCompression: 'gz'
     archiveFile: '$(Build.ArtifactStagingDirectory)/ccf_install_${{ parameters.protocol }}.tar.gz'
