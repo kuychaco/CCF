@@ -62,4 +62,4 @@ variables:
 jobs:
 - template: .azure-pipelines-templates/matrix.yml
   parameters:
-    release: ${{ variables['perf_or_release'] }}
+    perf_or_release: ${{ variables['perf_or_release'] }}
