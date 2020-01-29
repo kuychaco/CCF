@@ -32,9 +32,10 @@ jobs:
       condition: eq(variables['Build.Reason'], 'PullRequest')
 
     # TODO: Only run for release builds
-    - ${{ if eq(parameters.release, 'release') }}:
+    - ${{ if parameters.release }}:
       - download: current
         artifact: ccf_install.tar.gz
+        path: $(Build.ArtifactStagingDirectory)
 
       - task: GitHubRelease@0
         inputs:
