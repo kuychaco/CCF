@@ -29,7 +29,7 @@ jobs:
     - ${{ if and(eq(parameters.suffix, 'release'), eq(parameters.consensus, 'CFT'))}}:
       - template: install.yml
         parameters:
-          protocol: parameters.protocol
+          protocol: ${{ parameters.protocol }}
 
 
 
