@@ -17,5 +17,5 @@ steps:
 - task: PublishPipelineArtifact@1
   inputs:
     path: $(Build.ArtifactStagingDirectory)/ccf_install_${{ parameters.protocol }}.tar.gz
-    artifact: ccf_install.tar.gz
+    artifact: ccf_install_${{ parameters.protocol }}.tar.gz
     displayName: 'Publish CCF installation as build artifact'

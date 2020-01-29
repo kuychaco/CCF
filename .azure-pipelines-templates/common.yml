@@ -13,6 +13,7 @@ jobs:
     - template: build.yml
       parameters:
         cmake_args: '${{ parameters.cmake_args }}'
+        install_path: ''
         suite_label_suffix: '${{ parameters.target }}_${{ parameters.consensus }}_${{ parameters.protocol }}'
     # - template: test.yml
     #   parameters:
@@ -30,6 +31,7 @@ jobs:
       - template: install.yml
         parameters:
           protocol: ${{ parameters.protocol }}
+          install_path: ${{ }}
 
 
 

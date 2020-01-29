@@ -47,9 +47,9 @@ parameters:
         cmake_args: ''
     release:
       FTCP:
-        cmake_args: '-DCMAKE_INSTALL_PREFIX=./install'  # TODO: The install directory should be refactored
+        cmake_args: '-DCMAKE_INSTALL_PREFIX=./install'
       HTTP:
-        cmake_args: '-DCMAKE_INSTALL_PREFIX=./install' # TODO: The install directory should be refactored
+        cmake_args: '-DCMAKE_INSTALL_PREFIX=./install'
     san:
       cmake_args: '-DSAN=ON'
     FTCP:
