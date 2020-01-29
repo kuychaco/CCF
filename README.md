@@ -7,6 +7,9 @@
 
 # The Confidential Consortium Framework
 
+d
+d
+
 The Confidential Consortium Framework (CCF) is an open-source framework for building a new category of secure, highly available,
 and performant applications that focus on multi-party compute and data. While not limited just to blockchain applications,
 CCF can enable high-scale, confidential blockchain networks that meet key enterprise requirements
