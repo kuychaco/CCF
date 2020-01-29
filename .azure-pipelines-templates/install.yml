@@ -1,6 +1,6 @@
 parameters:
   # Default protocol is not included in suffix
-  ${{ if(ne(parameters.protocol), 'HTTP') }}:
+  ${{ if(ne(parameters.protocol, 'HTTP')) }}:
     suffix: '_${{ parameters.protocol }}'
 
 steps:
