@@ -22,9 +22,9 @@ parameters:
       # TODO: Should take into account Release as well as Perf!!
       # dependsOn: ['BuildAndTest_SGX_CFT_FTCP_Perf', 'BuildAndTest_SGX_BFT_FTCP_Perf', 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
       # ${{ if eq(parameters.perf_or_release, 'release') }}:
-      dependsOn: ['BuildAndTest_SGX_CFT_FTCP_release', 'BuildAndTest_SGX_BFT_FTCP_release'] #, 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
+      # dependsOn: ['BuildAndTest_SGX_CFT_FTCP_release', 'BuildAndTest_SGX_BFT_FTCP_release'] #, 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
       # ${{ if eq(parameters.perf_or_release, 'perf') }}:
-      # dependsOn: ['BuildAndTest_SGX_CFT_FTCP_perf', 'BuildAndTest_SGX_BFT_FTCP_perf'] #, 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
+      dependsOn: ['BuildAndTest_SGX_CFT_FTCP_perf', 'BuildAndTest_SGX_BFT_FTCP_perf'] #, 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
 
   build:
     common:
