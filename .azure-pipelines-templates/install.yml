@@ -1,7 +1,7 @@
 parameters:
-  default_protocol: 'HTTP' # Default protocol does
-
-
+  # Default protocol is not included in suffix
+  ${{ if(ne(parameters.protocol), 'HTTP') }}:
+    suffix: '_${{ parameters.protocol }}'
 
 steps:
 - script: |
@@ -15,7 +15,7 @@ steps:
     rootFolderOrFile: $(Build.SourcesDirectory)/build/install
     archiveType: 'tar'
     tarCompression: 'gz'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/ccf_install_${{ parameters.protocol }}.tar.gz'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/ccf_install${{ paramters.suffix }}.tar.gz'
     verbose: true
   displayName: 'Archive CCF installation'
 

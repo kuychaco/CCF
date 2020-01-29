@@ -36,7 +36,7 @@ jobs:
       - task: DownloadPipelineArtifact@2
         inputs:
           source: current
-          # patterns: 'ccf_install*.tar.gz' # TODO: Try with no pattern
+          # patterns: 'ccf_install*.tar.gz'
           path: $(Build.ArtifactStagingDirectory)
 
       - task: GitHubRelease@0
@@ -47,7 +47,7 @@ jobs:
           target: '$(Build.SourceVersion)'
           tagSource: manual # TODO: Change this
           tag: 'test' # TODO: Change this
-          # assets: $(Build.ArtifactStagingDirectory)/*.tar.gz
+          assets: $(Build.ArtifactStagingDirectory)/**/*.tar.gz
           assetUploadMode: 'delete'
           isDraft: true
           isPreRelease: true
