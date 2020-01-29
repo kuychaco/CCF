@@ -1,8 +1,8 @@
 jobs:
-- job: CIMetrics # TODO: Rename this to push
+- job: MetricsRelease # TODO: Rename this to push
   variables:
     skipComponentGovernanceDetection: true
-  displayName: 'CI Metrics'
+  displayName: 'Metrics and Release'
 
   ${{ insert }}: ${{ parameters.env }}
 

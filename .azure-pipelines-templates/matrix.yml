@@ -14,7 +14,7 @@ parameters:
     NoSGX_SAN:
       container: nosgx
       pool: Ubuntu-1804-D16s_v3
-    CIMetrics:
+    MetricsAndRelease:
       container: nosgx
       pool: Ubuntu-1804-D8s_v3
       # TODO: Should take into account Release as well as Perf!!
@@ -125,6 +125,6 @@ jobs:
           suffix: ${{ parameters.perf_or_release }}
           # depends_on: ${{ parameters.static_check_job_name }}
 
-  - template: cimetrics.yml
+  - template: metrics_release.yml
     parameters:
-      env: ${{ parameters.env.CIMetrics }}
+      env: ${{ parameters.env.MetricsAndRelease }}
