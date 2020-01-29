@@ -31,7 +31,7 @@ jobs:
       - template: install.yml
         parameters:
           protocol: ${{ parameters.protocol }}
-          ${{ if(ne(parameters.protocol, 'HTTP')) }}:
+          - ${{ if(ne(parameters.protocol, 'HTTP')) }}:
             suffix: '_${{ parameters.protocol }}'
           # install_path: ${{ }}
 
