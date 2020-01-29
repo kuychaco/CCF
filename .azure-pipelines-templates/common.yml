@@ -26,7 +26,7 @@ jobs:
     #   - template: push_perf_data.yml
     #     parameters:
     #       consensus: ${{ parameters.consensus }}
-    - ${{ if and(parameters.release, eq(parameters.consensus, 'CFT'))}}:
+    - ${{ if and(eq(parameters.perf_or_release, 'release'), eq(parameters.consensus, 'CFT'))}}:
       - template: install.yml
         parameters:
           protocol: parameters.protocol
