@@ -35,7 +35,7 @@ jobs:
     - ${{ if parameters.release }}:
       - task: DownloadPipelineArtifact@2
         inputs:
-          artifact: ccf_install*.tar.gz
+          patterns: 'ccf_install*.tar.gz'
           path: $(Build.ArtifactStagingDirectory)
 
       - task: GitHubRelease@0
