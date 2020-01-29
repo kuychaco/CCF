@@ -33,9 +33,10 @@ jobs:
 
     # TODO: Only run for release builds
     - ${{ if parameters.release }}:
-      - download: current
-        artifact: ccf_install.tar.gz
-        path: $(Build.ArtifactStagingDirectory)
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifact: ccf_install.tar.gz
+          path: $(Build.ArtifactStagingDirectory)
 
       - task: GitHubRelease@0
         inputs:
