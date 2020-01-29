@@ -54,9 +54,9 @@ resources:
 
 # TODO: Should be master and tagged
 variables:
-  ${{ if startsWith(variables['Build.SourceBranchName'], 'automated_releases') }}:
+  ${{ if startsWith(variables['Build.SourceBranchName'], 'automated_releases2') }}:
     perf_or_release: release
-  ${{ if not(startsWith(variables['Build.SourceBranchName'], 'automated_releases')) }}:
+  ${{ if not(startsWith(variables['Build.SourceBranchName'], 'automated_releases2')) }}:
     perf_or_release: perf
 
 jobs:
