@@ -21,7 +21,7 @@ parameters:
       pool: Ubuntu-1804-D8s_v3
       # TODO: Should take into account Release as well as Perf!!
       # dependsOn: ['BuildAndTest_SGX_CFT_FTCP_Perf', 'BuildAndTest_SGX_BFT_FTCP_Perf', 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
-      dependsOn: ['BuildAndTest_SGX_CFT_FTCP_${{ parameters.perf_or_release }}', 'BuildAndTest_SGX_BFT_FTCP_${{ parameters.perf_or_release }}'] #, 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
+      # dependsOn: ['BuildAndTest_SGX_CFT_FTCP_${{ parameters.perf_or_release }}', 'BuildAndTest_SGX_BFT_FTCP_${{ parameters.perf_or_release }}'] #, 'BuildAndTest_SGX_CFT_HTTP_Perf', 'BuildAndTest_SGX_BFT_HTTP_Perf']
 
   build:
     common:
@@ -132,3 +132,4 @@ jobs:
     parameters:
       env: ${{ parameters.env.MetricsAndRelease }}
       release: ${{ parameters.perf_or_release }}
+    dependsOn: ['BuildAndTest_SGX_CFT_FTCP_${{ parameters.perf_or_release }}', 'BuildAndTest_SGX_BFT_FTCP_${{ parameters.perf_or_release }}']
