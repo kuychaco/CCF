@@ -31,7 +31,7 @@ jobs:
       - template: install.yml
         parameters:
           protocol: ${{ parameters.protocol }}
-          install_path: ${{ }}
+          # install_path: ${{ }}
 
 
 
